@@ -3,36 +3,10 @@ import {Dimensions, Image} from 'react-native';
 
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import {
-  createMaterialTopTabNavigator,
-  createBottomTabNavigator,
-} from 'react-navigation-tabs';
 // import {createDrawerNavigator} from 'react-navigation-drawer';
 import * as AuthScreens from '../AuthScreens/index';
+import TopTabNavigation from './TopTabNavigation';
 
-// Tab Navigation for Login with email and phone
-const TabForPhoneEmail = createMaterialTopTabNavigator(
-  {
-    Login: {
-      screen: AuthScreens.LoginWithPhone,
-      
-    },
-    Signup: {
-      screen: AuthScreens.LoginWithEmail,
-    },
-  },
-  {
-    // tabBarComponent: AuthScreens.UserSelection,
-    tabBarOptions: {
-      activeTintColor: 'white',
-      inactiveTintColor: '#81b840',
-      style: {
-        backgroundColor:'blue'
-      }
-    },
-    initialRouteName: 'Signup',
-  },
-);
 // const Auth = createStackNavigator({
 //   Login: {
 //     screen: AuthScreens.login,
@@ -59,8 +33,10 @@ const TabForPhoneEmail = createMaterialTopTabNavigator(
 // });
 const RootNavigator = createSwitchNavigator({
   SplashScreen: AuthScreens.Splash,
-  //TermAndConditionScreen: AuthScreens.TermAndCondition,
-  TabScreen: TabForPhoneEmail
+  SignupLoginOption: TopTabNavigation,
+  LoginScreen: AuthScreens.emaillogin,
+  EmailSignupScreen:AuthScreens.emailsignup,
+  FPScreen:AuthScreens.Forgetpassword
   // RegisterScreen: {
   //   screen: Register_StackNavigator,
   // },

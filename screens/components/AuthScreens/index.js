@@ -1,15 +1,17 @@
-import login from './login'
+import emaillogin from './emaillogin'
 import Splash from './Splash'
-import TermAndCondition from './TermAndCondition'
 import UserSelection from './UserSelection'
-import LoginWithEmail from './LoginWithEmail'
-import LoginWithPhone from './LoginWithPhone'
+import LoginPhoneEmailButton from './LoginPhoneEmailButton'
+import RegisterPhoneEmailButton from './RegisterPhoneEmailButton'
+import emailsignup from './emailsignup'
+import Forgetpassword from './Forgetpassword'
 export {
-    login,
+    emaillogin,
     Splash,
-    TermAndCondition,
     UserSelection,
-    LoginWithEmail,
-    LoginWithPhone
+    LoginPhoneEmailButton,
+    RegisterPhoneEmailButton,
+    emailsignup,
+    Forgetpassword
 
 }
