@@ -20,7 +20,7 @@ const fp = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.uppercontainer}>
-        <Image  source={require('../../../asessts/images/background.png')} />
+        <Image  style={{height:'150%',width:'100%'}} source={require('../../../asessts/images/background.png')} />
       </View>
       <View style={styles.lowercontainer}>
 
@@ -54,7 +54,8 @@ const fp = ({ navigation }) => {
         <View style={{width:'80%',marginTop: 25,alignSelf:'center',alignItems:'flex-end'}}>
         <TouchableOpacity
           style={styles.buttonStyle}
-          activeOpacity={0.5}>
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('CFPScreen')}>
           <Text style={styles.buttonTextStyle}>Send</Text>
         </TouchableOpacity>
         </View>

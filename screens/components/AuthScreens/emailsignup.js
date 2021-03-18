@@ -134,7 +134,8 @@ const Signupemail = ({navigation}) => {
               <Text style={styles.buttonTextStyle}>Sign Up</Text>
             </TouchableOpacity>
 
-              <Text style={{color: '#D73D33', fontSize: 14,alignSelf:'center',marginTop:5,fontWeight:'bold'}}>Already Have Account?</Text>
+              <Text style={{color: '#D73D33', fontSize: 14,alignSelf:'center',marginTop:5,fontWeight:'bold'}}
+              onPress={() => navigation.navigate('SignupLoginOption')}>Already Have Account?</Text>
 
          </KeyboardAvoidingView>
        </View>

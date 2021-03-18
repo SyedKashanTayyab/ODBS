@@ -5,7 +5,9 @@ import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 // import {createDrawerNavigator} from 'react-navigation-drawer';
 import * as AuthScreens from '../AuthScreens/index';
+
 import TopTabNavigation from './TopTabNavigation';
+import drawernavigation from './drawernavigation'
 
 // const Auth = createStackNavigator({
 //   Login: {
@@ -36,7 +38,10 @@ const RootNavigator = createSwitchNavigator({
   SignupLoginOption: TopTabNavigation,
   LoginScreen: AuthScreens.emaillogin,
   EmailSignupScreen:AuthScreens.emailsignup,
-  FPScreen:AuthScreens.Forgetpassword
+  FPScreen:AuthScreens.Forgetpassword,
+  CFPScreen:AuthScreens.CheckForgotPass,
+
+  HomeScr:drawernavigation
   // RegisterScreen: {
   //   screen: Register_StackNavigator,
   // },
