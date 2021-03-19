@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
-import {SafeAreaView, StyleSheet, Text, View, Image} from 'react-native';
-// importing Segmented Control Tab
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, View, Image } from 'react-native';
+
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-import {  LoginPhoneEmailButton,
-  RegisterPhoneEmailButton,} from '../AuthScreens';
+import {
+  LoginPhoneEmailButton,
+  RegisterPhoneEmailButton,
+} from '../AuthScreens';
 
 const TopTabNavigation = (navigation) => {
   const [customStyleIndex, setCustomStyleIndex] = useState(0);
 
   const handleCustomIndexSelect = (index) => {
-    // Tab selection for custom Tab Selection
     setCustomStyleIndex(index);
   };
 
@@ -17,7 +18,7 @@ const TopTabNavigation = (navigation) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <View style={styles.header}>
-        <Image style={{height:'100%',width:'100%'}}  source={require('../../../asessts/images/background.png')}/>
+          <Image style={{ height: '100%', width: '100%' }} source={require('../../../asessts/images/background.png')} />
         </View>
         <View style={styles.footer}>
           <SegmentedControlTab
@@ -25,26 +26,22 @@ const TopTabNavigation = (navigation) => {
             selectedIndex={customStyleIndex}
             onTabPress={handleCustomIndexSelect}
             borderRadius={5}
-            // tabsContainerStyle={{
-            //   backgroundColor: '#F2F2F2',
-            // }}
             tabStyle={{
-              backgroundColor:'none',
+              backgroundColor: 'none',
               backgroundColor: '#fff',
               borderWidth: 1,
               borderColor: 'transparent',
-              paddingVertical:15
-              // borderRadius:50
+              paddingVertical: 15
             }}
             activeTabStyle={{
               backgroundColor: '#D73D33',
 
             }}
-            tabTextStyle={{color: '#000',fontSize:16}}
-            activeTabTextStyle={{color: '#fff', fontWeight: 'bold',fontSize:16}}
+            tabTextStyle={{ color: '#000', fontSize: 16 }}
+            activeTabTextStyle={{ color: '#fff', fontWeight: 'bold', fontSize: 16 }}
           />
           {customStyleIndex === 0 && <LoginPhoneEmailButton navigationProps={navigation} />}
-          {customStyleIndex === 1 && <RegisterPhoneEmailButton navigationProps={navigation}/>}
+          {customStyleIndex === 1 && <RegisterPhoneEmailButton navigationProps={navigation} />}
         </View>
       </View>
     </SafeAreaView>

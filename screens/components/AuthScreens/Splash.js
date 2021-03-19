@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import {ActivityIndicator, View, StyleSheet, Image} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { ActivityIndicator, View, StyleSheet, Image } from 'react-native';
 
-const SplashScreen = ({navigation}) => {
+const SplashScreen = ({ navigation }) => {
   const [animating, setAnimating] = useState(true);
 
   useEffect(() => {
@@ -13,12 +13,12 @@ const SplashScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      
-        <Image
-          source={require('../../../asessts/images/background.png')}
-          style={{flex:1}}
-        />
-       
+
+      <Image
+        source={require('../../../asessts/images/background.png')}
+        style={{ flex: 1 }}
+      />
+
     </View>
   );
 };

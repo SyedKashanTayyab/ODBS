@@ -7,7 +7,7 @@ import {
     ScrollView,
     Image,
     Keyboard,
-    ImageBackground,
+    ActivityIndicator,
     TouchableOpacity,
     KeyboardAvoidingView,
     FlatList
@@ -17,6 +17,7 @@ import {
 const Home = ({ navigation }) => {
 
     const [data, setdata] = useState([]);
+    const [activeSections, setactiveSections] = useState([])
 
 
     useEffect(() => {
@@ -27,35 +28,49 @@ const Home = ({ navigation }) => {
     });
 
     const renderItemComponent = (props) => {
+        if (!data) {
+            return (
+                <ActivityIndicator
+                    animating={true}
+                    style={styles.indicator}
+                    size="large"
+                />
+            );
+        }
+        else if (data.length === 0) {
+            return <Text>No records found!!</Text>
+        }
+        else {
+            return (
 
-        return (
-            <TouchableOpacity>
-                <View style={styles.row}>
-                    <Image
-                        source={{
-                            uri:
-                                'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',
-                        }}
-                        style={styles.pic}
-                    />
-                    <View>
-                        <View style={styles.nameContainer}>
-                            <Text style={styles.nameTxt}>{props.item.title}</Text>
-                            <Text style={styles.time}>{props.item.completed}</Text>
-                        </View>
-                        <View style={styles.msgContainer}>
-                            {/* <Icon
+                <TouchableOpacity>
+                    <View style={styles.row}>
+                        <Image
+                            source={{
+                                uri:
+                                    'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',
+                            }}
+                            style={styles.pic}
+                        />
+                        <View>
+                            <View style={styles.nameContainer}>
+                                <Text style={styles.nameTxt}>{props.item.title}</Text>
+                                <Text style={styles.time}>{props.item.completed}</Text>
+                            </View>
+                            <View style={styles.msgContainer}>
+                                {/* <Icon
                     name={props.icon}
                     size={15}
                     color="#b3b3b3"
                     style={{marginLeft: 15, marginRight: 5}}
                   /> */}
-                            <Text style={styles.msgTxt}>{props.item.id}</Text>
+                                <Text style={styles.msgTxt}>{props.item.id}</Text>
+                            </View>
                         </View>
                     </View>
-                </View>
-            </TouchableOpacity>
-        );
+                </TouchableOpacity>
+            );
+        }
     }
     return (
         <View style={styles.container}>
@@ -105,11 +120,20 @@ const Home = ({ navigation }) => {
             </View>
 
             <View style={styles.listcontainer}>
-                <FlatList
+                {data ? <FlatList
                     data={data}
                     renderItem={(item) => renderItemComponent(item)}
                     keyExtractor={(item) => item.id.toString()}
                 />
+                    :
+                    <ActivityIndicator
+                        animating={true}
+                        style={styles.indicator}
+                        size="large"
+                        
+                    />
+                }
+
             </View>
         </View>
     );
@@ -127,7 +151,7 @@ const styles = StyleSheet.create({
     listcontainer: {
         height: '84%',
         width: '100%',
-        backgroundColor: '#D73D33'
+        backgroundColor: '#fff'
     },
     searchcontainer: {
         height: '8%',
@@ -214,5 +238,12 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         color: '#666',
         fontSize: 12,
+    },
+    indicator: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 80,
+        color: 'black'
     }
 });

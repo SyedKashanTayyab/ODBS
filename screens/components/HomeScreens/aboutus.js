@@ -18,7 +18,7 @@ const au = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-           <Text>ndjsgdhgsadsahgdhasgdjhsga</Text>
+            <Text>ndjsgdhgsadsahgdhasgdjhsga</Text>
         </View>
     );
 };

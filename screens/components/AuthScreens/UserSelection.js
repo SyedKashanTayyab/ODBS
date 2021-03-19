@@ -13,20 +13,20 @@ const UserSelection = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={{ height:'70%' }}>
+      <View style={{ height: '70%' }}>
         <Image
           source={require('../../../asessts/images/aboutreact.png')}
           style={{ width: '90%', height: '100%', resizeMode: 'contain', margin: 30 }}
         />
       </View>
       <View style={styles.footer}>
-        <View style={{ flex: 1, flexDirection: 'row',justifyContent:'space-evenly',alignItems:'center'}}>
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
           {navigationState.routes.map((route, index) => {
             const isRouteActive = index === activeTabIndex;
             const tintColor = isRouteActive ? activeTintColor : inactiveTintColor;
 
             return (
-              <TouchableWithoutFeedback 
+              <TouchableWithoutFeedback
                 onPress={() => navigation.navigate(route.routeName)}
                 key={index}>
 
@@ -34,8 +34,8 @@ const UserSelection = (props) => {
                   style={{
                     backgroundColor: `${isRouteActive ? '#81b840' : 'white'}`,
                     color: `${tintColor}`,
-                    paddingHorizontal:50,
-                    paddingVertical:10
+                    paddingHorizontal: 50,
+                    paddingVertical: 10
                   }}>
                   {route.routeName}
                 </Text>
@@ -52,7 +52,7 @@ const UserSelection = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-   
+
   },
 
   footer: {
