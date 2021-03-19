@@ -22,7 +22,8 @@ export default LoginPhoneEmailButton;
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 40,
+    marginBottom:40
   },
   b1: {
     marginVertical: 5,

@@ -18,6 +18,7 @@ const SplashScreen = ({ navigation }) => {
         source={require('../../../asessts/images/background.png')}
         style={{ flex: 1 }}
       />
+      <ActivityIndicator size={60} color="#fff" style={styles.indicator} />
 
     </View>
   );
@@ -36,4 +37,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 80,
   },
+  bottomView: {
+    width: 200,
+    height: 200,
+    backgroundColor: '#D73D33',
+    position: 'absolute',
+    borderRadius: 100,
+  },
+  indicator: {
+    position: 'absolute',
+    marginTop: 60
+  }
 });

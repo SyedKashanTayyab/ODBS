@@ -15,7 +15,7 @@ import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import { useEffect } from 'react/cjs/react.development';
 
 const CustomSidebarMenu = (props) => {
-  const [uname, setuname] = useState("Greyson Walker")
+  const [uname, setuname] = useState("Syed Kashan Tayyab")
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ height: 150, backgroundColor: '#D73D33', alignItems: 'center', justifyContent: 'center' }}>

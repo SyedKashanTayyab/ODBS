@@ -17,61 +17,53 @@ import {
 const Home = ({ navigation }) => {
 
     const [data, setdata] = useState([]);
-    const [activeSections, setactiveSections] = useState([])
+    const [loading, setloading] = useState(true)
 
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/todos')
             .then((response) => response.json())
-            .then((json) => setdata(json));
+            .then((json) => {
+                setdata(json)
+                setloading(false)
+            });
+
 
     });
 
     const renderItemComponent = (props) => {
-        if (!data) {
-            return (
-                <ActivityIndicator
-                    animating={true}
-                    style={styles.indicator}
-                    size="large"
-                />
-            );
-        }
-        else if (data.length === 0) {
-            return <Text>No records found!!</Text>
-        }
-        else {
-            return (
 
-                <TouchableOpacity>
-                    <View style={styles.row}>
-                        <Image
-                            source={{
-                                uri:
-                                    'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',
-                            }}
-                            style={styles.pic}
-                        />
-                        <View>
-                            <View style={styles.nameContainer}>
-                                <Text style={styles.nameTxt}>{props.item.title}</Text>
-                                <Text style={styles.time}>{props.item.completed}</Text>
-                            </View>
-                            <View style={styles.msgContainer}>
-                                {/* <Icon
+        return (
+
+            <TouchableOpacity onPress={() => navigation.navigate("Movetodisplaypdf")}>
+                <View style={styles.row}>
+                    <Image
+                        source={{
+                            uri:
+                                'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',
+                        }}
+                        style={styles.pic}
+                    />
+                    <View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{props.item.title}</Text>
+                            <Text style={styles.time}>{props.item.completed}</Text>
+                        </View>
+                        <View style={styles.msgContainer}>
+                            {/* <Icon
                     name={props.icon}
                     size={15}
                     color="#b3b3b3"
                     style={{marginLeft: 15, marginRight: 5}}
                   /> */}
-                                <Text style={styles.msgTxt}>{props.item.id}</Text>
-                            </View>
+                            <Text style={styles.msgTxt}>{props.item.id}</Text>
                         </View>
                     </View>
-                </TouchableOpacity>
-            );
-        }
+                </View>
+            </TouchableOpacity>
+        );
     }
+
     return (
         <View style={styles.container}>
 
@@ -120,19 +112,14 @@ const Home = ({ navigation }) => {
             </View>
 
             <View style={styles.listcontainer}>
-                {data ? <FlatList
+                {loading ? <ActivityIndicator size="large" color="#D73D33" style={styles.indicator} /> : <FlatList
                     data={data}
                     renderItem={(item) => renderItemComponent(item)}
                     keyExtractor={(item) => item.id.toString()}
-                />
-                    :
-                    <ActivityIndicator
-                        animating={true}
-                        style={styles.indicator}
-                        size="large"
-                        
-                    />
-                }
+                />}
+<View style={styles.bottomView}>
+          <Image source={require('../../../asessts/images/upload.png')} />
+        </View>
 
             </View>
         </View>
@@ -173,7 +160,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         height: '80%',
         width: 90,
-        borderRadius: 20,
+        borderRadius: 50,
         marginLeft: 10
     },
     buttonTextStyle: {
@@ -243,7 +230,17 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        height: 80,
-        color: 'black'
-    }
+        height: 80
+    },
+    bottomView: {
+        width: 50,
+        height: 50,
+        backgroundColor: '#D73D33',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 50,
+        right: 20,
+        borderRadius: 100,
+      }
 });

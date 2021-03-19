@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator, TransitionPresets } from 'react-navigation-stack';
 import * as MainScreen from '../HomeScreens/index'
 import CustomSidebarMenu from './CustomSidebarMenu'
 
@@ -63,7 +63,29 @@ const homescreen_StackNavigator = createStackNavigator({
       headerTintColor: '#fff'
     }),
   },
-});
+  Movetodisplaypdf: {
+    screen: MainScreen.displaypdf,
+    navigationOptions: ({ navigation }) => ({
+      safeAreaInsets: { top: 0 },
+      headerTitle: 'Display',
+      headerStyle: {
+        backgroundColor: '#D73D33',
+        borderBottomRightRadius: 50,
+        borderBottomLeftRadius: 50,
+        height: 60
+      },
+      shadowOpacity: 0,
+      elevation: 0,
+      headerTintColor: '#fff'
+    }),
+  },
+
+},
+  {
+    defaultNavigationOptions: {
+      ...TransitionPresets.SlideFromRightIOS,
+    },
+  });
 
 const aboutus_StackNavigator = createStackNavigator({
   Second: {
