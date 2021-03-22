@@ -17,14 +17,16 @@ import {
 const Home = ({ navigation }) => {
 
     const [data, setdata] = useState([]);
+    const [categorydata, setcategorydata] = useState([]);
     const [loading, setloading] = useState(true)
-
+    var SampleNameArray = ["Pankaj", "Rita", "Mohan", "Amit", "Babulal", "Sakshi"];
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/todos')
             .then((response) => response.json())
             .then((json) => {
                 setdata(json)
+                setcategorydata(json)
                 setloading(false)
             });
 
@@ -35,38 +37,40 @@ const Home = ({ navigation }) => {
 
         return (
 
-            <TouchableOpacity onPress={() => navigation.navigate("Movetodisplaypdf")}>
-                <View style={styles.row}>
-                    <Image
-                        source={{
-                            uri:
-                                'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',
-                        }}
-                        style={styles.pic}
-                    />
-                    <View>
-                        <View style={styles.nameContainer}>
-                            <Text style={styles.nameTxt}>{props.item.title}</Text>
-                            <Text style={styles.time}>{props.item.completed}</Text>
-                        </View>
-                        <View style={styles.msgContainer}>
-                            {/* <Icon
-                    name={props.icon}
-                    size={15}
-                    color="#b3b3b3"
-                    style={{marginLeft: 15, marginRight: 5}}
-                  /> */}
-                            <Text style={styles.msgTxt}>{props.item.id}</Text>
-                        </View>
-                    </View>
+            <TouchableOpacity onPress={() => navigation.navigate("Movetodisplaypdf")}
+                style={styles.row}>
+
+                <Image
+                    source={require('../../../asessts/images/book.jpg')}
+                    style={styles.pic}
+                />
+
+
+                <View style={styles.nameContainer}>
+                    <Text style={styles.nameTxt}>{props.item.title}</Text>
+                    <Text style={styles.description}>by Imad Ali</Text>
                 </View>
             </TouchableOpacity>
         );
     }
 
+
+    const rendercategory = (props) => {
+
+        return (
+
+            <TouchableOpacity
+                style={styles.buttonStyle}
+                activeOpacity={0.5}>
+                <Text style={styles.buttonTextStyle}>{props.item.id}</Text>
+            </TouchableOpacity>
+        );
+    }
+
+
+
     return (
         <View style={styles.container}>
-
 
 
             <View style={styles.searchcontainer}>
@@ -82,33 +86,12 @@ const Home = ({ navigation }) => {
             </View>
 
             <View style={styles.scrollcontainer}>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
-                    <TouchableOpacity
-                        style={styles.buttonStyle}
-                        activeOpacity={0.5}>
-                        <Text style={styles.buttonTextStyle}>All</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonStyle}
-                        activeOpacity={0.5}>
-                        <Text style={styles.buttonTextStyle}>Book</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonStyle}
-                        activeOpacity={0.5}>
-                        <Text style={styles.buttonTextStyle}>Research</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonStyle}
-                        activeOpacity={0.5}>
-                        <Text style={styles.buttonTextStyle}>Novel</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonStyle}
-                        activeOpacity={0.5}>
-                        <Text style={styles.buttonTextStyle}>Article</Text>
-                    </TouchableOpacity>
-                </ScrollView>
+                <FlatList
+                    horizontal
+                    data={categorydata}
+                    renderItem={(item) => rendercategory(item)}
+                    showsHorizontalScrollIndicator={false}
+                />
             </View>
 
             <View style={styles.listcontainer}>
@@ -117,9 +100,9 @@ const Home = ({ navigation }) => {
                     renderItem={(item) => renderItemComponent(item)}
                     keyExtractor={(item) => item.id.toString()}
                 />}
-<View style={styles.bottomView}>
-          <Image source={require('../../../asessts/images/upload.png')} />
-        </View>
+                <View style={styles.bottomView}>
+                    <Image source={require('../../../asessts/images/upload.png')} />
+                </View>
 
             </View>
         </View>
@@ -132,13 +115,13 @@ const styles = StyleSheet.create({
     container: {
         height: '100%',
         width: '100%',
-        backgroundColor: '#fff',
+        backgroundColor: '#F7F7F7',
         alignItems: 'center'
     },
     listcontainer: {
         height: '84%',
         width: '100%',
-        backgroundColor: '#fff'
+        backgroundColor: '#F7F7F7'
     },
     searchcontainer: {
         height: '8%',
@@ -191,31 +174,37 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderColor: '#f7f7f7',
-        borderBottomWidth: 1,
         padding: 10,
         backgroundColor: '#fff',
+        width: '90%',
+        alignSelf: 'center',
+        borderRadius: 25,
+        marginTop: 10,
+        elevation: 25
     },
     pic: {
-        borderRadius: 30,
-        width: 60,
-        height: 60,
+        borderRadius: 10,
+        width: 80,
+        height: '100%',
     },
     nameContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: 280,
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        height: '100%',
+        marginRight: 30
     },
     nameTxt: {
-        marginLeft: 15,
-        fontWeight: '600',
-        color: '#222',
-        fontSize: 15,
+        color: '#000',
+        fontSize: 20,
+        marginLeft: 10,
+        marginRight: 50,
+        fontWeight: 'bold'
     },
-    time: {
-        fontWeight: '200',
-        color: '#777',
-        fontSize: 13,
+    description: {
+        color: '#000',
+        fontSize: 18,
+        marginTop: 1,
+        marginLeft: 10
     },
     msgContainer: {
         flexDirection: 'row',
@@ -242,5 +231,5 @@ const styles = StyleSheet.create({
         bottom: 50,
         right: 20,
         borderRadius: 100,
-      }
+    }
 });

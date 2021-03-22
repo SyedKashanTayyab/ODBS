@@ -4,7 +4,8 @@ import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
 const RegisterPhoneEmailButton = ({ navigationProps }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.b1}>
+      <TouchableOpacity style={styles.b1}
+        onPress={() => navigationProps.navigation.navigate('PhoneSignupScreen')}>
         <Text style={{ color: '#D73D33', fontWeight: 'bold', fontSize: 18 }}>Sign up With Phone</Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     marginTop: 40,
-    marginBottom:40
+    marginBottom: 40
   },
   button: {
     marginVertical: 5,

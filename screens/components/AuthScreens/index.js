@@ -7,7 +7,9 @@ import RegisterPhoneEmailButton from './RegisterPhoneEmailButton'
 import emailsignup from './emailsignup'
 import Forgetpassword from './Forgetpassword'
 import CheckForgotPass from './CheckForgotPass'
-
+import phoneloginnum from './phoneloginnum'
+import PhoneSignUp from './phonesignup'
+import phonecheckotplogin from './phonecheckotplogin'
 
 //home screens
 
@@ -20,5 +22,8 @@ export {
     RegisterPhoneEmailButton,
     emailsignup,
     Forgetpassword,
-    CheckForgotPass
+    CheckForgotPass,
+    phoneloginnum,
+    PhoneSignUp,
+    phonecheckotplogin
 }

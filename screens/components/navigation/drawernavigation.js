@@ -114,10 +114,10 @@ const aboutus_StackNavigator = createStackNavigator({
 
 const DrawerNavigatorExample = createDrawerNavigator({
 
-  Screen1: {
+  Home: {
     screen: homescreen_StackNavigator,
     navigationOptions: {
-      drawerLabel: 'Home',
+      // drawerLabel: 'Home',
       drawerIcon: ({ tintColor }) => (
         <Image
           source={require('../../../asessts/images/home.png')}
@@ -129,10 +129,10 @@ const DrawerNavigatorExample = createDrawerNavigator({
       },
     },
   },
-  Screen2: {
+  'About us': {
     screen: aboutus_StackNavigator,
     navigationOptions: {
-      drawerLabel: 'About us',
+      // drawerLabel: 'About us',
       drawerIcon: ({ tintColor }) => (
         <Image
           source={require('../../../asessts/images/information.png')}

@@ -1,7 +1,7 @@
 // Custom Navigation Drawer / Sidebar with Image and Icon in Menu Options
 // https://aboutreact.com/custom-navigation-drawer-sidebar-with-image-and-icon-in-menu-options/
 
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import {
   SafeAreaView,
   View,
@@ -14,22 +14,134 @@ import {
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import { useEffect } from 'react/cjs/react.development';
 
-const CustomSidebarMenu = (props) => {
-  const [uname, setuname] = useState("Syed Kashan Tayyab")
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ height: 150, backgroundColor: '#D73D33', alignItems: 'center', justifyContent: 'center' }}>
-        <Image style={{ height: 85, width: 85, borderRadius: 60 }}
-          source={require('../../../asessts/images/profile.png')} />
+class CustomSidebarMenu extends Component {
+  constructor() {
+    super();
+    this.state = {
 
-        <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'white', marginTop: 10 }}>{uname}</Text>
+      items: [
+        {
+          navOptionName: 'Home',
+          screenToNavigate: 'Home',
+          uri: require('../../../asessts/images/home.png'),
+        },
+        {
+          navOptionName: 'About us',
+          screenToNavigate: 'About us',
+          uri: require('../../../asessts/images/information.png'),
+        },
+      ],
+    };
+  }
+  logOut() {
+    console.log("Logging out")
+    this.props.navigation.navigate("SignupLoginOption")
+  }
+  render() {
+
+
+    return (
+      <View style={styles.sideMenuContainer}>
+        {/*Top Large Image */}
+        <View style={styles.sideMenuProfile}>
+          <Image
+            source={require('../../../asessts/images/profile.png')}
+            style={styles.sideMenuProfileIcon}
+          />
+        </View>
+
+
+        {/*Setting up Navigation Options from option array using loop*/}
+        <View style={{ width: '100%' }}>
+          {this.state.items.map((item, key) => (
+            <View
+              style={{
+                alignItems: 'flex-start',
+                marginTop: 15,
+                width: '80%',
+                alignSelf: 'center',
+                
+              }}
+              key={key}>
+              <View style={{ flexDirection: 'row' }}>
+                <Image source={item.uri} style={styles.sideMenuIcon} />
+                <Text
+                  style={{
+                    fontSize: 16,
+
+                    color:
+                      global.currentScreenIndex === key ? '#D73D33' : 'black',
+                  }}
+                  onPress={() => {
+                    global.currentScreenIndex = key;
+                    this.props.navigation.navigate(item.screenToNavigate);
+                  }}>
+                  {item.navOptionName}
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  width: '100%',
+                  height: 1,
+                  marginTop: 5,
+                  backgroundColor: '#D73D33',
+                }}
+              />
+            </View>
+          ))}
+        </View>
+        <View style={{ position: 'absolute', bottom: 30 ,flexDirection:'row'}}>
+        <Image
+            source={require('../../../asessts/images/logout.png')}
+            style={{height:22,width:22}}
+          />
+          <Text
+            onPress={() => {
+              this.logOut();
+            }}
+            style={{
+              color: '#D73D33',
+              fontSize: 18,
+              fontWeight:'bold'
+            }}>
+            Log Out
+          </Text>
+        </View>
       </View>
-      <ScrollView>
-        <DrawerItems {...props} />
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+    );
+  }
+}
+const styles = StyleSheet.create({
+  sideMenuContainer: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    paddingTop: 20,
+  },
 
+  sideMenuProfile: {
+    width: 100,
+    height: 100,
+    borderWidth: 5,
+    borderRadius: 100,
+    borderColor: '#D73D33',
+    marginTop: 30,
+  },
+  sideMenuProfileIcon: {
+    resizeMode: 'cover',
+    width: '100%',
+    height: '100%',
+    borderRadius: 100,
+  },
+  sideMenuIcon: {
+    resizeMode: 'contain',
+    width: 22,
+    height: 22,
+    marginRight: 5,
+    marginLeft: 8,
+  }
+});
 
 export default CustomSidebarMenu;

@@ -11,6 +11,10 @@ const RootNavigator = createSwitchNavigator({
   EmailSignupScreen: AuthScreens.emailsignup,
   FPScreen: AuthScreens.Forgetpassword,
   CFPScreen: AuthScreens.CheckForgotPass,
+  PhoneLoginScreen:AuthScreens.phoneloginnum,
+  PhoneLoginOTP:AuthScreens.phonecheckotplogin,
+  PhoneSignupScreen:AuthScreens.PhoneSignUp,
+
 
   HomeScr: drawernavigation
 });

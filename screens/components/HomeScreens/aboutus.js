@@ -18,7 +18,7 @@ const au = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text>ndjsgdhgsadsahgdhasgdjhsga</Text>
+            <Text style={{fontSize:62,fontWeight:'bold'}}>I am About</Text>
         </View>
     );
 };
@@ -29,5 +29,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        alignItems:'center',
+        justifyContent:'center'
     }
 });
