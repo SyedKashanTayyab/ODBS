@@ -18,7 +18,7 @@ class CustomSidebarMenu extends Component {
   constructor() {
     super();
     this.state = {
-
+        name :"Syed Kashan Tayyab",
       items: [
         {
           navOptionName: 'Home',
@@ -48,6 +48,12 @@ class CustomSidebarMenu extends Component {
             source={require('../../../asessts/images/profile.png')}
             style={styles.sideMenuProfileIcon}
           />
+        </View>
+
+        <View style={{marginBottom:10}}>
+        <Text style={{fontSize:20,color:'#D73D33',fontWeight:'bold'}}>
+            {this.state.name}
+          </Text>
         </View>
 
 
@@ -91,10 +97,10 @@ class CustomSidebarMenu extends Component {
             </View>
           ))}
         </View>
-        <View style={{ position: 'absolute', bottom: 30 ,flexDirection:'row'}}>
+        <View style={{ position: 'absolute', bottom: 30 ,flexDirection:'row',alignItems:'center',alignContent:'center'}}>
         <Image
             source={require('../../../asessts/images/logout.png')}
-            style={{height:22,width:22}}
+            style={{height:20,width:22,marginRight:5,resizeMode:'contain'}}
           />
           <Text
             onPress={() => {
@@ -128,6 +134,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderColor: '#D73D33',
     marginTop: 30,
+    marginBottom:10
   },
   sideMenuProfileIcon: {
     resizeMode: 'cover',

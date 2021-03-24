@@ -10,6 +10,7 @@ import CheckForgotPass from './CheckForgotPass'
 import phoneloginnum from './phoneloginnum'
 import PhoneSignUp from './phonesignup'
 import phonecheckotplogin from './phonecheckotplogin'
+import checkotpsignup from './checkotpsignup'
 
 //home screens
 
@@ -25,5 +26,6 @@ export {
     CheckForgotPass,
     phoneloginnum,
     PhoneSignUp,
-    phonecheckotplogin
+    phonecheckotplogin,
+    checkotpsignup
 }

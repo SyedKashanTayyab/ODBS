@@ -12,15 +12,13 @@ class NavigationDrawerStructure extends Component {
   };
   render() {
     return (
-      <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
-
+        <TouchableOpacity onPress={this.toggleDrawer.bind(this)}
+        style={{marginLeft: 25,width:40,alignItems:'center' }}>
           <Image
             source={require('../../../asessts/images/hamburger.png')}
-            style={{ marginLeft: 25 }}
+      
           />
         </TouchableOpacity>
-      </View>
     );
   }
 }

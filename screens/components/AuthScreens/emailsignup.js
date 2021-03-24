@@ -7,11 +7,12 @@ import {
   ScrollView,
   Image,
   Keyboard,
-  ImageBackground,
+  Platform,
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
 
+import DropDownPicker from 'react-native-dropdown-picker';
 
 const Signupemail = ({ navigation }) => {
 
@@ -19,6 +20,7 @@ const Signupemail = ({ navigation }) => {
   const passwordInputRef = createRef();
   const confirmpasswordInputRef = createRef();
   const [errortext, setErrortext] = useState('');
+  const [role, setrole] = useState("Publisher")
   return (
     // <View style={styles.container}>
     <ScrollView
@@ -123,6 +125,31 @@ const Signupemail = ({ navigation }) => {
               />
             </View>
 
+            <View   style={{
+        ...(Platform.OS = 'android' && {
+            zIndex: 10
+        }),alignSelf:'center',marginTop:15,
+        borderColor: '#bbb',width:'80%'
+    }}>
+            <DropDownPicker
+                items={[
+                    { label: 'Publisher', value: 'Publisher' },
+                    { label: 'Reader', value: 'Reader' },
+                ]}
+                defaultValue={role}
+                containerStyle={{ height: 47, width: '100%'}}
+                style={{ backgroundColor: '#fff' }}
+                itemStyle={{
+                    justifyContent: 'flex-start',
+                    color: 'white'
+                }}
+                dropDownStyle={{ backgroundColor: '#fafafa' }}
+                onChangeItem={item => setrole(item.value)}
+            />
+
+            </View>
+
+
             {errortext != '' ? (
               <Text style={styles.errorTextStyle}>
                 {errortext}
@@ -154,12 +181,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#000'
   },
   uppercontainer: {
-    height: '35%',
+    height: '30%',
     width: '100%',
     backgroundColor: '#fff',
   },
   lowercontainer: {
-    height: '65%',
+    height: '70%',
     width: '100%',
     backgroundColor: '#fff',
     borderTopRightRadius: 55,
@@ -170,7 +197,7 @@ const styles = StyleSheet.create({
     width: '80%',
     marginLeft: '10%',
     marginRight: '10%',
-    marginTop: 20,
+    marginTop: 10,
     backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',

@@ -19,19 +19,18 @@ const Home = ({ navigation }) => {
     const [data, setdata] = useState([]);
     const [categorydata, setcategorydata] = useState([]);
     const [loading, setloading] = useState(true)
-    var SampleNameArray = ["Pankaj", "Rita", "Mohan", "Amit", "Babulal", "Sakshi"];
 
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/todos')
-            .then((response) => response.json())
-            .then((json) => {
-                setdata(json)
-                setcategorydata(json)
-                setloading(false)
-            });
+    // useEffect(() => {
+    //     fetch('https://jsonplaceholder.typicode.com/todos')
+    //         .then((response) => response.json())
+    //         .then((json) => {
+    //             setdata(json)
+    //             setcategorydata(json)
+    //             setloading(false)
+    //         });
 
 
-    });
+    // });
 
     const renderItemComponent = (props) => {
 
@@ -75,7 +74,8 @@ const Home = ({ navigation }) => {
 
             <View style={styles.searchcontainer}>
                 <TouchableOpacity style={styles.inputcontainer}
-                    onPress={() => navigation.navigate("Movetosearch")}>
+                    // onPress={() => navigation.navigate("Movetosearch")}
+                    onPress={() => navigation.navigate("Movetodisplaypdf")}>
                     <Image
                         source={require('../../../asessts/images/search.png')}
                         style={{ resizeMode: 'contain' }} />
@@ -101,7 +101,8 @@ const Home = ({ navigation }) => {
                     keyExtractor={(item) => item.id.toString()}
                 />}
                 <View style={styles.bottomView}>
-                    <Image source={require('../../../asessts/images/upload.png')} />
+                    <Image source={require('../../../asessts/images/upload.png')}
+                     />
                 </View>
 
             </View>

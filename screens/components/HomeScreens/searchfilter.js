@@ -24,7 +24,7 @@ const sf = ({ navigation }) => {
         <View style={styles.container}>
             <View   style={{
         ...(Platform.OS = 'android' && {
-            zIndex: 10
+            zIndex: 1000
         }),alignSelf:'center',marginTop:15,
         borderWidth: 1,
         borderColor: '#bbb',width:'80%',borderRadius:7

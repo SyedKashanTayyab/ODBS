@@ -14,7 +14,7 @@ import {
 import Pdf from 'react-native-pdf';
 
 const display = ({ navigation }) => {
-    const source = {uri:'http://samples.leanpub.com/thereactnativebook-sample.pdf',cache:false};
+    const source = {uri:'http://samples.leanpub.com/thereactnativebook-sample.pdf',cache:true};
 
     return (
         <View style={styles.container}>

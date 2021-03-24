@@ -14,6 +14,7 @@ const RootNavigator = createSwitchNavigator({
   PhoneLoginScreen:AuthScreens.phoneloginnum,
   PhoneLoginOTP:AuthScreens.phonecheckotplogin,
   PhoneSignupScreen:AuthScreens.PhoneSignUp,
+  PhoneSignupOtp:AuthScreens.checkotpsignup,
 
 
   HomeScr: drawernavigation

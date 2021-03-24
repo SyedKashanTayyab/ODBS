@@ -7,19 +7,17 @@ import {
   ScrollView,
   Image,
   Keyboard,
-  Platform,
+  ImageBackground,
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
 
 
-const Signupphone = ({ navigation }) => {
+const checkSignupphone = ({ navigation }) => {
 
   const numberRef = createRef();
   const otpRef = createRef();
   const [errortext, setErrortext] = useState('');
-  const [role, setrole] = useState("Publisher")
   return (
     // <View style={styles.container}>
     <ScrollView
@@ -39,75 +37,28 @@ const Signupphone = ({ navigation }) => {
         <View>
           <KeyboardAvoidingView enabled>
 
-            <Text style={{ color: 'black', fontSize: 28, marginTop: 40, marginLeft: '10%', fontWeight: 'bold' }}>Sign Up</Text>
+            <Text style={{ color: 'black', fontSize: 28, marginTop: 20, marginLeft: '10%', fontWeight: 'bold' }}>Enter OTP</Text>
             <View style={{ alignItems: 'center' }}>
 
             </View>
 
+           
             <View style={styles.inputcontainer}>
               <Image
-                source={require('../../../asessts/images/name.png')}
+                source={require('../../../asessts/images/otp.png')}
                 style={{ resizeMode: 'contain' }} />
-              <TextInput
-                style={styles.inputStyle}
-                placeholder="Enter Name" //dummy@abc.com
-                placeholderTextColor="#8b9cb5"
-                autoCapitalize="none"
-                keyboardType='ascii-capable'
-                returnKeyType="next"
-                underlineColorAndroid="#f000"
-                blurOnSubmit={false}
-                onSubmitEditing={() =>
-                    numberRef.current &&
-                    numberRef.current.focus()
-                }
-              />
+             <TextInput
+                            style={styles.inputStyle}
+                            ref={otpRef}
+                            placeholder="Enter otp" //dummy@abc.com
+                            placeholderTextColor="#8b9cb5"
+                            autoCapitalize="none"
+                            keyboardType='number-pad'
+                            returnKeyType="next"
+                            underlineColorAndroid="#f000"
+                            blurOnSubmit={false}
+                        />
             </View>
-
-            <View style={styles.inputcontainer}>
-              <Image
-                source={require('../../../asessts/images/call.png')}
-                style={{ resizeMode: 'contain' }} />
-              <TextInput
-                style={styles.inputStyle}
-                ref={numberRef}
-                placeholder="Enter Number" //dummy@abc.com
-                placeholderTextColor="#8b9cb5"
-                autoCapitalize="none"
-                keyboardType="number-pad"
-                returnKeyType="next"
-                underlineColorAndroid="#f000"
-                blurOnSubmit={false}
-                onSubmitEditing={() =>
-                    otpRef.current &&
-                    otpRef.current.focus()
-                }
-              />
-            </View>
-            <View   style={{
-        ...(Platform.OS = 'android' && {
-            zIndex: 10
-        }),alignSelf:'center',marginTop:20,
-        borderColor: '#bbb',width:'80%'
-    }}>
-            <DropDownPicker
-                items={[
-                    { label: 'Publisher', value: 'Publisher' },
-                    { label: 'Reader', value: 'Reader' },
-                ]}
-                defaultValue={role}
-                containerStyle={{ height: 47, width: '100%'}}
-                style={{ backgroundColor: '#fff' }}
-                itemStyle={{
-                    justifyContent: 'flex-start',
-                    color: 'white'
-                }}
-                dropDownStyle={{ backgroundColor: '#fafafa' }}
-                onChangeItem={item => setrole(item.value)}
-            />
-
-            </View>
-
 
             {errortext != '' ? (
               <Text style={styles.errorTextStyle}>
@@ -116,8 +67,7 @@ const Signupphone = ({ navigation }) => {
             ) : null}
             <TouchableOpacity
               style={styles.buttonStyle}
-              activeOpacity={0.5}
-              onPress={() => navigation.navigate('PhoneSignupOtp')}>
+              activeOpacity={0.5}>
               <Text style={styles.buttonTextStyle}>Sign Up</Text>
             </TouchableOpacity>
 
@@ -133,7 +83,7 @@ const Signupphone = ({ navigation }) => {
   );
 };
 
-export default Signupphone;
+export default checkSignupphone;
 
 const styles = StyleSheet.create({
   container: {
