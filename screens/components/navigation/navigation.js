@@ -6,15 +6,15 @@ import drawernavigation from './drawernavigation'
 
 const RootNavigator = createSwitchNavigator({
   SplashScreen: AuthScreens.Splash,
-  SignupLoginOption: TopTabNavigation,
+ // SignupLoginOption: TopTabNavigation,
   LoginScreen: AuthScreens.emaillogin,
   EmailSignupScreen: AuthScreens.emailsignup,
-  FPScreen: AuthScreens.Forgetpassword,
-  CFPScreen: AuthScreens.CheckForgotPass,
-  PhoneLoginScreen:AuthScreens.phoneloginnum,
-  PhoneLoginOTP:AuthScreens.phonecheckotplogin,
-  PhoneSignupScreen:AuthScreens.PhoneSignUp,
-  PhoneSignupOtp:AuthScreens.checkotpsignup,
+ // FPScreen: AuthScreens.Forgetpassword,
+  //CFPScreen: AuthScreens.CheckForgotPass,
+ // PhoneLoginScreen:AuthScreens.phoneloginnum,
+ // PhoneLoginOTP:AuthScreens.phonecheckotplogin,
+ // PhoneSignupScreen:AuthScreens.PhoneSignUp,
+ // PhoneSignupOtp:AuthScreens.checkotpsignup,
 
 
   HomeScr: drawernavigation

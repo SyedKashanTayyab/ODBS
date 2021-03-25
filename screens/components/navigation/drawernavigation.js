@@ -135,6 +135,7 @@ const DrawerNavigatorExample = createDrawerNavigator({
         <Image
           source={require('../../../asessts/images/information.png')}
         />
+        
       ),
     },
   },
