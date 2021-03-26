@@ -42,65 +42,57 @@ const Log = ({ navigation }) => {
         </View>
         <View style={styles.lowercontainer}>
 
-        <KeyboardAvoidingView enabled>
-          <Text style={styles.headingtext}>Login</Text>
-          <Text style={styles.belowheadingtext}>Enter your credentials...</Text>
-
-          <View style={[styles.inputcontainer, { marginTop: '7%' }]}>
-           
-            <TextInput
-              style={styles.inputStyle}
-              placeholder="Enter Email" //dummy@abc.com
-              placeholderTextColor="#6C63FF"
-              autoCapitalize="none"
-              keyboardType="email-address"
-              returnKeyType="next"
-              underlineColorAndroid="#f000"
-              blurOnSubmit={false}
-              onSubmitEditing={() =>
-                passwordInputRef.current &&
-                passwordInputRef.current.focus()
-              }
-            />
-          </View>
-
-
-
-          <View style={[styles.inputcontainer, { marginTop: '4%' }]}>
-    
-            <TextInput
-              style={styles.inputStyle}
-              ref={passwordInputRef}
-              placeholder="Enter Password" //dummy@abc.com
-              placeholderTextColor="#6C63FF"
-              autoCapitalize="none"
-              keyboardType='ascii-capable'
-              returnKeyType="next"
-              underlineColorAndroid="#f000"
-              blurOnSubmit={false}
-              secureTextEntry={true}
-            />
-          </View>
-
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            activeOpacity={0.5}>
-            <Text style={styles.buttonTextStyle}>Login</Text>
-          </TouchableOpacity>
-
-          <View style={styles.viewimage}>
+          <ScrollView style={{ zIndex: 1 }} keyboardShouldPersistTaps="handled">
+            <KeyboardAvoidingView enabled>
+              <Text style={styles.headingtext}>Login</Text>
+              <Text style={styles.belowheadingtext}>Enter your credentials...</Text>
+              <View style={[styles.inputcontainer, { marginTop: '7%' }]}>
+                <Text style={styles.innertext}>Email</Text>
+                <TextInput
+                  style={styles.inputStyle}
+                  placeholder="Enter Email" //dummy@abc.com
+                  placeholderTextColor="#6C63FF"
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  returnKeyType="next"
+                  underlineColorAndroid="#f000"
+                  blurOnSubmit={false}
+                  onSubmitEditing={() =>
+                    passwordInputRef.current &&
+                    passwordInputRef.current.focus()
+                  }
+                />
+              </View>
+              <View style={[styles.inputcontainer, { marginTop: '4%' }]}>
+                <Text style={styles.innertext}>Password</Text>
+                <TextInput
+                  style={styles.inputStyle}
+                  ref={passwordInputRef}
+                  placeholder="Enter Password" //dummy@abc.com
+                  placeholderTextColor="#6C63FF"
+                  autoCapitalize="none"
+                  keyboardType='ascii-capable'
+                  returnKeyType="next"
+                  underlineColorAndroid="#f000"
+                  blurOnSubmit={false}
+                  secureTextEntry={true}
+                />
+              </View>
+              <TouchableOpacity
+                style={styles.buttonStyle}
+                activeOpacity={0.5}>
+                <Text style={styles.buttonTextStyle}>Login</Text>
+              </TouchableOpacity>
+            </KeyboardAvoidingView>
+          </ScrollView>
+          <View style={{ bottom: 0, position: 'absolute' }}>
             <Image
               source={require('../../../asessts/images/logindesignpic.png')}
-              style={styles.image}
+              style={{ resizeMode: 'contain', marginTop: 50 }}
             />
           </View>
-
-
-        </KeyboardAvoidingView>
-
-          
         </View>
-        </ScrollView>
+      </ScrollView>
     </LinearGradient>
   );
 };
@@ -140,27 +132,25 @@ const styles = StyleSheet.create({
     fontFamily: font.fonts.RalewayLight
   },
   inputcontainer: {
-    width: '80%',
     marginLeft: '10%',
     marginRight: '10%',
     backgroundColor: '#F3F2FF',
     borderRadius: 80,
     alignContent: 'center',
+    paddingLeft: 15
   },
   innertext: {
     fontWeight: 'bold',
     fontSize: 16,
-    marginLeft: 30,
     marginTop: 8,
-    fontFamily: font.fonts.RalewayLight
+    fontFamily: font.fonts.RalewayLight,
+    marginLeft: 4
   },
   inputStyle: {
     width: '80%',
     color: '#6C63FF',
-    marginLeft: 10,
     fontSize: 16,
-    fontFamily: font.fonts.RalewayMedium,
-    alignContent: 'center'
+    fontFamily: font.fonts.RalewayMedium
   },
   buttonStyle: {
     backgroundColor: '#6C63FF',
@@ -179,19 +169,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     fontFamily: font.fonts.RalewaySemiBold,
-
-  },
-  viewimage: {
-    height: '50%',
-    width: '100%',
-    alignSelf: 'center',
-    marginTop: 12,
-
-  },
-  image: {
-    height: '100%',
-    width: '100%',
-    resizeMode: 'contain'
   },
   registerbuttonStyle: {
     height: 35,
