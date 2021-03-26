@@ -123,15 +123,16 @@ const Signupemail = ({ navigation }) => {
             </View>
             <TouchableOpacity
               style={styles.buttonStyle}
-              activeOpacity={0.5}>
+              activeOpacity={0.5}
+              onPress={()=>navigation.navigate("UsertypeScreen")}>
               <Text style={styles.buttonTextStyle}>Sign Up</Text>
             </TouchableOpacity>
           </KeyboardAvoidingView>
         </ScrollView>
-        <View style={{ bottom: 0, position: 'absolute'}}>
+        <View style={{ bottom: 0, position: 'absolute',width:'100%' }}>
           <Image
             source={require('../../../asessts/images/belowpicture.png')}
-            style={{ resizeMode: 'contain', marginTop: 50 }}
+            style={{ resizeMode: 'contain',width:'100%' }}
           />
         </View>
       </View>

@@ -27,9 +27,7 @@ const fp = ({ navigation }) => {
         <Text style={{ color: 'black', fontSize: 28, marginTop: 35, marginLeft: '10%', fontWeight: 'bold' }}>Forgot Password</Text>
 
         <View style={styles.inputcontainer}>
-          <Image
-            source={require('../../../asessts/images/email.png')}
-            style={{ resizeMode: 'contain' }} />
+          
           <TextInput
             style={styles.inputStyle}
             placeholder="Enter Email" //dummy@abc.com

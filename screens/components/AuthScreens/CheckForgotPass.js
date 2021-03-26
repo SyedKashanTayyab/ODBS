@@ -30,9 +30,7 @@ const cfp = ({ navigation }) => {
                     <Text style={{ color: 'black', fontSize: 28, marginTop: 35, marginLeft: '10%', fontWeight: 'bold' }}>Set Password</Text>
 
                     <View style={styles.inputcontainer}>
-                        <Image
-                            source={require('../../../asessts/images/otp.png')}
-                            style={{ resizeMode: 'contain' }} />
+                   
                         <TextInput
                             style={styles.inputStyle}
                             placeholder="Enter otp" //dummy@abc.com
@@ -50,9 +48,7 @@ const cfp = ({ navigation }) => {
                     </View>
 
                     <View style={styles.inputcontainer}>
-                        <Image
-                            source={require('../../../asessts/images/lock.png')}
-                            style={{ resizeMode: 'contain' }} />
+                       
                         <TextInput
                             style={styles.inputStyle}
                             placeholder="Enter Password" //dummy@abc.com
@@ -71,9 +67,7 @@ const cfp = ({ navigation }) => {
                     </View>
 
                     <View style={styles.inputcontainer}>
-                        <Image
-                            source={require('../../../asessts/images/lock.png')}
-                            style={{ resizeMode: 'contain' }} />
+                       
                         <TextInput
                             ref={confirmpasswordInputRef}
                             style={styles.inputStyle}

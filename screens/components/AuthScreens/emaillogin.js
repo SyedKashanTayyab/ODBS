@@ -85,10 +85,10 @@ const Log = ({ navigation }) => {
               </TouchableOpacity>
             </KeyboardAvoidingView>
           </ScrollView>
-          <View style={{ bottom: 0, position: 'absolute' }}>
+          <View style={{ bottom: 0, position: 'absolute',width:'100%',alignItems:'center'}}>
             <Image
               source={require('../../../asessts/images/logindesignpic.png')}
-              style={{ resizeMode: 'contain', marginTop: 50 }}
+              style={{ resizeMode: 'contain'}}
             />
           </View>
         </View>
