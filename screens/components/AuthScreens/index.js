@@ -5,6 +5,7 @@ import emailsignup from './emailsignup'
 import usertype from './usertype'
 import Forgetpassword from './Forgetpassword'
 import CheckForgotPass from './CheckForgotPass'
+import updatepassword from './updatepassword'
 
 //home screens
 
@@ -15,5 +16,6 @@ export {
     emailsignup,
     Forgetpassword,
     CheckForgotPass,
-    usertype
+    usertype,
+    updatepassword
 }

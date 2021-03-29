@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import font from '../../constants/fonts'
 import colors from '../../constants/colors'
 
-const FP = ({ navigation }) => {
+const Update = ({ navigation }) => {
 
   const passwordInputRef = createRef();
   const [errortext, setErrortext] = useState('');
@@ -22,20 +22,42 @@ const FP = ({ navigation }) => {
           end={{ x: 1, y: 1 }}
         >
           <Text style={styles.definetext}>Recover Your Password</Text>
-          <Text style={styles.preferencetext}>Enter your recovery email...</Text>
+          <Text style={styles.preferencetext}>Enter new password...</Text>
         </LinearGradient>
       </View>
+      
       <View style={styles.lowercontainer}>
+          <ScrollView keyboardShouldPersistTaps="handled">
+      <KeyboardAvoidingView enabled>
         <View style={[styles.inputcontainer, { marginTop: '7%' }]}>
           <TextInput
             style={styles.inputStyle}
-            placeholder="Enter Email" //dummy@abc.com
+            placeholder="Enter Password" //dummy@abc.com
             placeholderTextColor="#6C63FF"
             autoCapitalize="none"
-            keyboardType="email-address"
+            keyboardType="ascii-capable"
             returnKeyType="next"
             underlineColorAndroid="#f000"
             blurOnSubmit={false}
+            secureTextEntry={true}
+            onSubmitEditing={() =>
+              passwordInputRef.current &&
+              passwordInputRef.current.focus()
+            }
+          />
+        </View>
+        <View style={[styles.inputcontainer, { marginTop: '5%' }]}>
+          <TextInput
+            style={styles.inputStyle}
+            placeholder="Enter Confirm Password" //dummy@abc.com
+            placeholderTextColor="#6C63FF"
+            ref={passwordInputRef}
+            autoCapitalize="none"
+            keyboardType='ascii-capable'
+            returnKeyType="next"
+            underlineColorAndroid="#f000"
+            blurOnSubmit={false}
+            secureTextEntry={true}
             onSubmitEditing={() =>
               passwordInputRef.current &&
               passwordInputRef.current.focus()
@@ -55,17 +77,16 @@ const FP = ({ navigation }) => {
           </TouchableOpacity>
         </LinearGradient>
 
+      
+        </KeyboardAvoidingView>
+        
+      </ScrollView>
       </View>
-      <View style={styles.belowlowercontainer}>
-        <Image
-          source={require('../../../asessts/images/belowpicture.png')}
-          style={{ resizeMode: 'stretch', width: '100%', height: '100%' }}
-        />
-      </View>
+      
     </LinearGradient>
   );
 };
-export default FP;
+export default Update;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -82,14 +103,14 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start'
   },
   lowercontainer: {
-    height: '59%',
+    height: '72%',
     width: '100%',
     backgroundColor: '#fff',
     borderTopRightRadius: 35,
     borderTopLeftRadius: 35
   },
   belowlowercontainer: {
-    height: '13%',
+    height: '12%',
     width: '100%',
     backgroundColor: '#fff'
   },

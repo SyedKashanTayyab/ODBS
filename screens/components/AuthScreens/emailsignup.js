@@ -1,31 +1,31 @@
 import React, { createRef } from 'react';
-import {StyleSheet,TextInput,View,Text,ScrollView,Image,TouchableOpacity,KeyboardAvoidingView,} from 'react-native';
+import { StyleSheet, TextInput, View, Text, ScrollView, Image, TouchableOpacity, KeyboardAvoidingView, } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import font from '../../font/fonts'
+import font from '../../constants/fonts'
+import colors from '../../constants/colors'
 
 const Signupemail = ({ navigation }) => {
-
   const lastnameref = createRef();
   const passwordInputRef = createRef();
   const confirmpasswordInputRef = createRef();
   const emailInputRef = createRef();
   return (
     <LinearGradient
-      colors={['#4D47B7', '#423D9B', '#393587']}
+      colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
       style={styles.linearGradient}
       start={{ x: 0.3, y: 1 }}
       end={{ x: 1, y: 1 }}
     >
       <View style={styles.uppercontainer}>
         <LinearGradient
-          colors={['#4D47B7', '#423D9B', '#393587']}
+          colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
           style={[styles.linearGradient, { justifyContent: 'center' }]}
           start={{ x: 0.3, y: 1 }}
           end={{ x: 1, y: 1 }}
         >
           <TouchableOpacity
             onPress={() => navigation.navigate("LoginScreen")}
-            style={{ width: 40, height: 40, left: 10, justifyContent: 'center', alignItems: 'center' }}>
+            style={{ left: 20, marginTop: '5%', marginBottom: '5%' }}>
 
             <Image
               source={require('../../../asessts/images/arrow.png')}
@@ -36,7 +36,7 @@ const Signupemail = ({ navigation }) => {
 
       </View>
       <View style={styles.lowercontainer}>
-        <ScrollView style={{zIndex:1 }} keyboardShouldPersistTaps="handled">
+        <ScrollView keyboardShouldPersistTaps="handled">
           <KeyboardAvoidingView enabled>
             <Text style={styles.headingtext}>Register</Text>
             <Text style={styles.belowheadingtext}>Enter your credentials...</Text>
@@ -118,30 +118,34 @@ const Signupemail = ({ navigation }) => {
                 keyboardType='ascii-capable'
                 returnKeyType="next"
                 underlineColorAndroid="#f000"
+                secureTextEntry={true}
                 blurOnSubmit={false}
               />
             </View>
-            <TouchableOpacity
+            <LinearGradient
               style={styles.buttonStyle}
-              activeOpacity={0.5}
-              onPress={()=>navigation.navigate("UsertypeScreen")}>
-              <Text style={styles.buttonTextStyle}>Sign Up</Text>
-            </TouchableOpacity>
+              colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
+              start={{ x: 0.3, y: 1 }}
+              end={{ x: 1, y: 1 }}>
+              <TouchableOpacity style={{ flex: 1 }}
+                onPress={() => navigation.navigate("UsertypeScreen")}>
+
+                <Text style={styles.buttonTextStyle}>Sign Up</Text>
+              </TouchableOpacity>
+            </LinearGradient>
           </KeyboardAvoidingView>
+          <View style={{ width: '100%' }}>
+            <Image
+              source={require('../../../asessts/images/belowpicture.png')}
+              style={{ resizeMode: 'contain', width: '100%' }}
+            />
+          </View>
         </ScrollView>
-        <View style={{ bottom: 0, position: 'absolute',width:'100%' }}>
-          <Image
-            source={require('../../../asessts/images/belowpicture.png')}
-            style={{ resizeMode: 'contain',width:'100%' }}
-          />
-        </View>
       </View>
     </LinearGradient>
   );
 };
-
 export default Signupemail;
-
 const styles = StyleSheet.create({
   uppercontainer: {
     height: '10%',
@@ -182,7 +186,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   inputStyle: {
-    width: '80%',
+    width: '90%',
     color: '#6C63FF',
     marginLeft: 15,
     fontSize: 16,
