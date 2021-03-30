@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React, { createRef, useState } from 'react';
 import { StyleSheet, TextInput, View, Text, ScrollView, Image, TouchableOpacity, KeyboardAvoidingView, } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import font from '../../constants/fonts'
@@ -9,6 +9,17 @@ const Signupemail = ({ navigation }) => {
   const passwordInputRef = createRef();
   const confirmpasswordInputRef = createRef();
   const emailInputRef = createRef();
+  const [showpassword, setshowpassword] = useState(true);
+  const [showconfirmpassword, setshowconfirmpassword] = useState(true);
+
+  const displayonoffpassword = () => {
+
+    setshowpassword(!showpassword)
+  }
+  const displayonoffconfirmpassword = () => {
+
+    setshowconfirmpassword(!showconfirmpassword)
+  }
   return (
     <LinearGradient
       colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
@@ -25,7 +36,7 @@ const Signupemail = ({ navigation }) => {
         >
           <TouchableOpacity
             onPress={() => navigation.navigate("LoginScreen")}
-            style={{ left: 20, marginTop: '5%', marginBottom: '5%' }}>
+            style={{ left: 20, marginTop: '5%', marginBottom: '5%', width: 70 }}>
 
             <Image
               source={require('../../../asessts/images/arrow.png')}
@@ -36,8 +47,8 @@ const Signupemail = ({ navigation }) => {
 
       </View>
       <View style={styles.lowercontainer}>
-        <ScrollView keyboardShouldPersistTaps="handled">
-          <KeyboardAvoidingView enabled>
+        <ScrollView keyboardShouldPersistTaps="handled"   >
+          <KeyboardAvoidingView enabled={true}>
             <Text style={styles.headingtext}>Register</Text>
             <Text style={styles.belowheadingtext}>Enter your credentials...</Text>
             <View style={[styles.inputcontainer, { marginTop: '6%' }]}>
@@ -90,7 +101,7 @@ const Signupemail = ({ navigation }) => {
                 }
               />
             </View>
-            <View style={[styles.inputcontainer, { marginTop: '4%' }]}>
+            <View style={[styles.inputcontainer, { marginTop: '4%', flexDirection: 'row', alignItems: 'center' }]}>
               <TextInput
                 ref={passwordInputRef}
                 style={styles.inputStyle}
@@ -101,14 +112,20 @@ const Signupemail = ({ navigation }) => {
                 returnKeyType="next"
                 underlineColorAndroid="#f000"
                 blurOnSubmit={false}
-                secureTextEntry={true}
+                secureTextEntry={showpassword}
                 onSubmitEditing={() =>
                   confirmpasswordInputRef.current &&
                   confirmpasswordInputRef.current.focus()
                 }
               />
+              <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => displayonoffpassword()}>
+                <Image
+                  source={showpassword ? require('../../../asessts/images/eyeoff.png') : require('../../../asessts/images/eyeon.png')}
+                  style={{ resizeMode: 'contain' }}
+                />
+              </TouchableOpacity>
             </View>
-            <View style={[styles.inputcontainer, { marginTop: '4%' }]}>
+            <View style={[styles.inputcontainer, { marginTop: '4%', flexDirection: 'row', alignItems: 'center' }]}>
               <TextInput
                 style={styles.inputStyle}
                 ref={confirmpasswordInputRef}
@@ -118,9 +135,15 @@ const Signupemail = ({ navigation }) => {
                 keyboardType='ascii-capable'
                 returnKeyType="next"
                 underlineColorAndroid="#f000"
-                secureTextEntry={true}
+                secureTextEntry={showconfirmpassword}
                 blurOnSubmit={false}
               />
+              <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => displayonoffconfirmpassword()}>
+                <Image
+                  source={showconfirmpassword ? require('../../../asessts/images/eyeoff.png') : require('../../../asessts/images/eyeon.png')}
+                  style={{ resizeMode: 'contain' }}
+                />
+              </TouchableOpacity>
             </View>
             <LinearGradient
               style={styles.buttonStyle}
@@ -134,14 +157,9 @@ const Signupemail = ({ navigation }) => {
               </TouchableOpacity>
             </LinearGradient>
           </KeyboardAvoidingView>
-          <View style={{ width: '100%' }}>
-            <Image
-              source={require('../../../asessts/images/belowpicture.png')}
-              style={{ resizeMode: 'contain', width: '100%' }}
-            />
-          </View>
         </ScrollView>
       </View>
+
     </LinearGradient>
   );
 };
@@ -158,6 +176,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopRightRadius: 35,
     borderTopLeftRadius: 35
+  },
+  belowlowercontainer: {
+    height: '10%',
+    width: '100%',
+    backgroundColor: '#fff'
   },
   linearGradient: {
     height: '100%',
@@ -186,9 +209,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   inputStyle: {
-    width: '90%',
+    width: '85%',
     color: '#6C63FF',
-    marginLeft: 15,
+    marginLeft: 8,
     fontSize: 16,
     fontFamily: font.fonts.RalewayMedium,
     alignContent: 'center'

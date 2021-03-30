@@ -10,13 +10,11 @@ const cfp = ({ navigation }) => {
     const secondref = createRef();
     const thirdref = createRef();
     const forthref = createRef();
-
-
+    
     const [firstvalue, setfirstvalue] = useState(0);
     const [secondvalue, setsecondvalue] = useState(0);
     const [thirdvalue, setthirdvalue] = useState(0);
     const [fourthvalue, setfourthvalue] = useState(0);
-
 
     const fisrttxtinput = (fvalue) => {
         setfirstvalue(fvalue)
@@ -30,7 +28,6 @@ const cfp = ({ navigation }) => {
             firstref.current.focus()
         }
     }
-
     const secondtxtinput = (svalue) => {
         setsecondvalue(svalue)
         if (svalue != "") {
@@ -153,7 +150,7 @@ const cfp = ({ navigation }) => {
                     colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
                     start={{ x: 0.3, y: 1 }}
                     end={{ x: 1, y: 1 }}>
-                        <TouchableOpacity  style={{flex:1}}
+                        <TouchableOpacity  style={{width:'100%',height:'100%',alignItems:'center'}}
                         onPress={()=>navigation.navigate("UpdatePasswordScreen")}>
                         <Text style={styles.buttonTextStyle}>Submit</Text>
                         </TouchableOpacity>
@@ -239,7 +236,7 @@ const styles = StyleSheet.create({
     },
     preferencetext: {
         color: 'white',
-        fontSize: 18,
+        fontSize: 15,
         fontFamily: font.fonts.RalewaySemiBold,
         marginLeft: '8%'
     },

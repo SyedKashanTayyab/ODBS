@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { StyleSheet, View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import font from '../../constants/fonts'
 
@@ -54,10 +54,8 @@ const usertypefunc = ({ navigation }) => {
                     <View style={{ bottom: 0, position: 'absolute', width: '100%', height: '12%', marginTop: 20 }}>
                         <Image
                             source={require('../../../asessts/images/belowpicture.png')}
-                            style={{ resizeMode: 'stretch', width: '100%', height: '100%' }}
-                        />
+                            style={{ resizeMode: 'stretch', width: '100%', height: '100%' }}/>
                     </View>
-
                 </ScrollView>
             </View>
         </LinearGradient>
@@ -84,12 +82,12 @@ const styles = StyleSheet.create({
     },
     definetext: {
         fontFamily: font.fonts.RalewayBold,
-        fontSize: 30,
+        fontSize: 24,
         color: 'white'
     },
     preferencetext: {
         color: 'white',
-        fontSize: 18,
+        fontSize: 15,
         fontFamily: font.fonts.RalewaySemiBold
     },
     viewofcard: {

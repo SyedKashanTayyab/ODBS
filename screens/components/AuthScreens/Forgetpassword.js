@@ -7,7 +7,6 @@ import colors from '../../constants/colors'
 const FP = ({ navigation }) => {
 
   const passwordInputRef = createRef();
-  const [errortext, setErrortext] = useState('');
   return (
     <LinearGradient
       colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
@@ -48,7 +47,7 @@ const FP = ({ navigation }) => {
           start={{ x: 0.3, y: 1 }}
           end={{ x: 1, y: 1 }}
         >
-          <TouchableOpacity style={{ flex: 1 }}
+          <TouchableOpacity style={{ width:'100%',height:'100%',alignItems:'center' }}
             onPress={() => navigation.navigate("CFPScreen")}>
 
             <Text style={styles.buttonTextStyle}>Send Recovery Code</Text>
@@ -135,7 +134,7 @@ const styles = StyleSheet.create({
   },
   preferencetext: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 15,
     fontFamily: font.fonts.RalewaySemiBold,
     marginLeft: '8%'
   },

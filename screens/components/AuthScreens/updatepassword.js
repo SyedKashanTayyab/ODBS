@@ -7,7 +7,17 @@ import colors from '../../constants/colors'
 const Update = ({ navigation }) => {
 
   const passwordInputRef = createRef();
-  const [errortext, setErrortext] = useState('');
+  const [showpassword, setshowpassword] = useState(true);
+  const [showconfirmpassword, setshowconfirmpassword] = useState(true);
+
+  const displayonoffpassword = () => {
+
+    setshowpassword(!showpassword)
+  }
+  const displayonoffconfirmpassword = () => {
+
+    setshowconfirmpassword(!showconfirmpassword)
+  }
   return (
     <LinearGradient
       colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
@@ -25,64 +35,77 @@ const Update = ({ navigation }) => {
           <Text style={styles.preferencetext}>Enter new password...</Text>
         </LinearGradient>
       </View>
-      
+
       <View style={styles.lowercontainer}>
-          <ScrollView keyboardShouldPersistTaps="handled">
-      <KeyboardAvoidingView enabled>
-        <View style={[styles.inputcontainer, { marginTop: '7%' }]}>
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Enter Password" //dummy@abc.com
-            placeholderTextColor="#6C63FF"
-            autoCapitalize="none"
-            keyboardType="ascii-capable"
-            returnKeyType="next"
-            underlineColorAndroid="#f000"
-            blurOnSubmit={false}
-            secureTextEntry={true}
-            onSubmitEditing={() =>
-              passwordInputRef.current &&
-              passwordInputRef.current.focus()
-            }
+        <ScrollView keyboardShouldPersistTaps="handled">
+          <KeyboardAvoidingView enabled>
+            <View style={[styles.inputcontainer, { marginTop: '7%', alignItems: 'center', flexDirection: 'row' }]}>
+              <TextInput
+                style={styles.inputStyle}
+                placeholder="Enter Password" //dummy@abc.com
+                placeholderTextColor="#6C63FF"
+                autoCapitalize="none"
+                keyboardType="ascii-capable"
+                returnKeyType="next"
+                underlineColorAndroid="#f000"
+                blurOnSubmit={false}
+                secureTextEntry={showpassword}
+                onSubmitEditing={() =>
+                  passwordInputRef.current &&
+                  passwordInputRef.current.focus()
+                }
+              />
+              <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => displayonoffpassword()}>
+                <Image
+                  source={showpassword ? require('../../../asessts/images/eyeoff.png') : require('../../../asessts/images/eyeon.png')}
+                  style={{ resizeMode: 'contain' }}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={[styles.inputcontainer, { marginTop: '5%', alignItems: 'center', flexDirection: 'row' }]}>
+              <TextInput
+                style={styles.inputStyle}
+                placeholder="Enter Confirm Password" //dummy@abc.com
+                placeholderTextColor="#6C63FF"
+                ref={passwordInputRef}
+                autoCapitalize="none"
+                keyboardType='ascii-capable'
+                returnKeyType="next"
+                underlineColorAndroid="#f000"
+                blurOnSubmit={false}
+                secureTextEntry={showconfirmpassword}
+                onSubmitEditing={() =>
+                  passwordInputRef.current &&
+                  passwordInputRef.current.focus()
+                }
+              />
+              <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => displayonoffconfirmpassword()}>
+                <Image
+                  source={showconfirmpassword ? require('../../../asessts/images/eyeoff.png') : require('../../../asessts/images/eyeon.png')}
+                  style={{ resizeMode: 'contain' }}
+                />
+              </TouchableOpacity>
+            </View>
+            <LinearGradient
+              style={styles.buttonStyle}
+              colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
+              start={{ x: 0.3, y: 1 }}
+              end={{ x: 1, y: 1 }}
+            >
+              <TouchableOpacity style={{ width:'100%',height:'100%',alignItems:'center'}}
+                onPress={() => navigation.navigate("CFPScreen")}>
+                <Text style={styles.buttonTextStyle}>Send Recovery Code</Text>
+              </TouchableOpacity>
+            </LinearGradient>
+          </KeyboardAvoidingView>
+        </ScrollView>
+        <View style={styles.belowlowercontainer}>
+          <Image
+            source={require('../../../asessts/images/belowpicture.png')}
+            style={{ resizeMode: 'contain', width: '100%', bottom: 0, position: 'absolute' }}
           />
         </View>
-        <View style={[styles.inputcontainer, { marginTop: '5%' }]}>
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Enter Confirm Password" //dummy@abc.com
-            placeholderTextColor="#6C63FF"
-            ref={passwordInputRef}
-            autoCapitalize="none"
-            keyboardType='ascii-capable'
-            returnKeyType="next"
-            underlineColorAndroid="#f000"
-            blurOnSubmit={false}
-            secureTextEntry={true}
-            onSubmitEditing={() =>
-              passwordInputRef.current &&
-              passwordInputRef.current.focus()
-            }
-          />
-        </View>
-        <LinearGradient
-          style={styles.buttonStyle}
-          colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
-          start={{ x: 0.3, y: 1 }}
-          end={{ x: 1, y: 1 }}
-        >
-          <TouchableOpacity style={{ flex: 1 }}
-            onPress={() => navigation.navigate("CFPScreen")}>
-
-            <Text style={styles.buttonTextStyle}>Send Recovery Code</Text>
-          </TouchableOpacity>
-        </LinearGradient>
-
-      
-        </KeyboardAvoidingView>
-        
-      </ScrollView>
       </View>
-      
     </LinearGradient>
   );
 };
@@ -97,22 +120,23 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   uppercontainer: {
-    height: '28%',
+    height: '25%',
     width: '100%',
     justifyContent: 'center',
     alignItems: 'flex-start'
   },
   lowercontainer: {
-    height: '72%',
+    height: '75%',
     width: '100%',
     backgroundColor: '#fff',
     borderTopRightRadius: 35,
     borderTopLeftRadius: 35
   },
   belowlowercontainer: {
-    height: '12%',
+    height: '7%',
     width: '100%',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    zIndex: -1
   },
   inputcontainer: {
     marginLeft: '8%',
@@ -120,11 +144,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F2FF',
     borderRadius: 80,
     alignContent: 'center',
-    paddingLeft: 25,
+    paddingLeft: 8,
     justifyContent: 'center'
   },
   inputStyle: {
-    width: '100%',
+    width: '85%',
     color: '#6C63FF',
     fontSize: 16,
     fontFamily: font.fonts.RalewayMedium
@@ -156,7 +180,7 @@ const styles = StyleSheet.create({
   },
   preferencetext: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 15,
     fontFamily: font.fonts.RalewaySemiBold,
     marginLeft: '8%'
   },

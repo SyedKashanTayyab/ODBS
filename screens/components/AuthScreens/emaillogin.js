@@ -8,11 +8,27 @@ const Log = ({ navigation }) => {
 
   const passwordInputRef = createRef();
   const [show, setshow] = useState(true);
+  const [wrong, setwrong] = useState(false);
+  const [correct, setcorrect] = useState(false);
+  const [email, setemail] = useState("");
 
-  const displayonoff=()=>{
-    
+  const displayonoff = () => {
+
     setshow(!show)
   }
+  const validate = (text) => {
+    const userEmail = text.toLowerCase();
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (reg.test(userEmail) === false) {
+      setcorrect(false);
+      setwrong(true);
+      return false;
+    } else {
+      setcorrect(true);
+      setwrong(false);
+      setemail(userEmail);
+    }
+  };
   return (
     <LinearGradient
       colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
@@ -41,20 +57,35 @@ const Log = ({ navigation }) => {
             <Text style={styles.belowheadingtext}>Enter your credentials...</Text>
             <View style={[styles.inputcontainer, { marginTop: '7%' }]}>
               <Text style={styles.innertext}>Email</Text>
-              <TextInput
-                style={styles.inputStyle}
-                placeholder="Enter Email" //dummy@abc.com
-                placeholderTextColor="#6C63FF"
-                autoCapitalize="none"
-                keyboardType="email-address"
-                returnKeyType="next"
-                underlineColorAndroid="#f000"
-                blurOnSubmit={false}
-                onSubmitEditing={() =>
-                  passwordInputRef.current &&
-                  passwordInputRef.current.focus()
-                }
-              />
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <TextInput
+                  style={styles.inputStyle}
+                  placeholder="Enter Email" //dummy@abc.com
+                  placeholderTextColor="#6C63FF"
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  returnKeyType="next"
+                  underlineColorAndroid="#f000"
+                  onChangeText={(text) => validate(text)}
+                  blurOnSubmit={false}
+                  onSubmitEditing={() =>
+                    passwordInputRef.current &&
+                    passwordInputRef.current.focus()
+                  }
+                />
+                <View style={{ marginLeft: 2 }} activeOpacity={0.8}>
+                  {wrong && (
+                    <Image
+                      source={require('../../../asessts/images/wrong.png')}
+                    />
+                  )}
+                  {correct && (
+                    <Image
+                      source={require('../../../asessts/images/correct.png')}
+                    />
+                  )}
+                </View>
+              </View>
             </View>
             <View style={[styles.inputcontainer, { marginTop: '4%' }]}>
               <Text style={styles.innertext}>Password</Text>
@@ -71,13 +102,13 @@ const Log = ({ navigation }) => {
                   blurOnSubmit={false}
                   secureTextEntry={show}
                 />
-              <TouchableOpacity style={{ marginLeft: 2 }} onPress={()=>displayonoff()}>
+                <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => displayonoff()}>
 
                   <Image
-                    source={show?require('../../../asessts/images/eyeoff.png'):require('../../../asessts/images/eyeon.png')}
+                    source={show ? require('../../../asessts/images/eyeoff.png') : require('../../../asessts/images/eyeon.png')}
                     style={{ resizeMode: 'contain' }}
                   />
-                  </TouchableOpacity>
+                </TouchableOpacity>
 
 
               </View>
@@ -95,7 +126,7 @@ const Log = ({ navigation }) => {
               </TouchableOpacity>
             </LinearGradient>
           </KeyboardAvoidingView>
-          <View style={{ width: '100%', alignSelf: 'center', marginTop: 20 }}>
+          <View style={{ width: '100%', alignSelf: 'center', marginTop: 20}}>
             <Image
               source={require('../../../asessts/images/logindesignpic.png')}
               style={{ resizeMode: 'contain', alignSelf: 'center', width: '100%' }}
