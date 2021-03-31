@@ -7,6 +7,24 @@ import colors from '../../constants/colors'
 const FP = ({ navigation }) => {
 
   const passwordInputRef = createRef();
+  const [wrong, setwrong] = useState(false);
+  const [correct, setcorrect] = useState(false);
+  const [emailvalue, setemailvalue] = useState("");
+
+  const validate = (text) => {
+    const userEmail = text.toLowerCase();
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (reg.test(userEmail) === false) {
+      setcorrect(false);
+      setwrong(true);
+      return false;
+    } else {
+      setcorrect(true);
+      setwrong(false);
+      setemailvalue(userEmail);
+    }
+  };
+
   return (
     <LinearGradient
       colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
@@ -39,7 +57,20 @@ const FP = ({ navigation }) => {
               passwordInputRef.current &&
               passwordInputRef.current.focus()
             }
+            onChangeText={(Text) => validate(Text)}
           />
+          <View style={{ marginLeft: 2, justifyContent: 'center' }} activeOpacity={0.8}>
+            {wrong && (
+              <Image
+                source={require('../../../asessts/images/wrong.png')}
+              />
+            )}
+            {correct && (
+              <Image
+                source={require('../../../asessts/images/correct.png')}
+              />
+            )}
+          </View>
         </View>
         <LinearGradient
           style={styles.buttonStyle}
@@ -47,7 +78,7 @@ const FP = ({ navigation }) => {
           start={{ x: 0.3, y: 1 }}
           end={{ x: 1, y: 1 }}
         >
-          <TouchableOpacity style={{ width:'100%',height:'100%',alignItems:'center' }}
+          <TouchableOpacity style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}
             onPress={() => navigation.navigate("CFPScreen")}>
 
             <Text style={styles.buttonTextStyle}>Send Recovery Code</Text>
@@ -98,11 +129,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F2FF',
     borderRadius: 80,
     alignContent: 'center',
-    paddingLeft: 25,
-    justifyContent: 'center'
+    paddingLeft: 2,
+    justifyContent: 'center',
+    flexDirection: 'row'
   },
   inputStyle: {
-    width: '100%',
+    width: '85%',
     color: '#6C63FF',
     fontSize: 16,
     fontFamily: font.fonts.RalewayMedium
@@ -115,15 +147,14 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginLeft: '18%',
     marginRight: '18%',
-    marginTop: 20,
+    marginTop: 30,
     justifyContent: 'center',
-    height: 40
+    height: 60
   },
   buttonTextStyle: {
     color: '#FFFFFF',
     paddingVertical: 10,
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
     fontFamily: font.fonts.RalewaySemiBold,
   },
   definetext: {

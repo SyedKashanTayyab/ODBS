@@ -11,15 +11,57 @@ const Signupemail = ({ navigation }) => {
   const emailInputRef = createRef();
   const [showpassword, setshowpassword] = useState(true);
   const [showconfirmpassword, setshowconfirmpassword] = useState(true);
+  const [wrongfirstname, setwrongfirstname] = useState(false);
+  const [correctfirstname, setcorrectfirstname] = useState(false);
+  const [wronglastname, setwronglastname] = useState(false);
+  const [correctlastname, setcorrectlastname] = useState(false);
+  const [wrongemail, setwrongemail] = useState(false);
+  const [correctemail, setcorrectemail] = useState(false);
+  const [firstnamevalue, setfirstnamevalue] = useState("");
+  const [secondnamevalue, setsecondnamevalue] = useState("");
+  const [emailvalue, setemailvalue] = useState("");
 
-  const displayonoffpassword = () => {
-
-    setshowpassword(!showpassword)
-  }
-  const displayonoffconfirmpassword = () => {
-
-    setshowconfirmpassword(!showconfirmpassword)
-  }
+  const displayonoffpassword = () => { setshowpassword(!showpassword) }
+  const displayonoffconfirmpassword = () => { setshowconfirmpassword(!showconfirmpassword) }
+  const validatefirstname = (text) => {
+    const userFirstname = text.toLowerCase();
+    let reg = /^[a-z ,.'-]+$/i;
+    if (reg.test(userFirstname) === false) {
+      setcorrectfirstname(false);
+      setwrongfirstname(true);
+      return false;
+    } else {
+      setcorrectfirstname(true);
+      setwrongfirstname(false);
+      setfirstnamevalue(userFirstname);
+    }
+  };
+  const validatesecondname = (text) => {
+    const userSecondname = text.toLowerCase();
+    let reg = /^[a-z ,.'-]+$/i;
+    if (reg.test(userSecondname) === false) {
+      setcorrectlastname(false);
+      setwronglastname(true);
+      return false;
+    } else {
+      setcorrectlastname(true);
+      setwronglastname(false);
+      setsecondnamevalue(userSecondname);
+    }
+  };
+  const validateemail = (text) => {
+    const userEmail = text.toLowerCase();
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (reg.test(userEmail) === false) {
+      setcorrectemail(false);
+      setwrongemail(true);
+      return false;
+    } else {
+      setcorrectemail(true);
+      setwrongemail(false);
+      setemailvalue(userEmail);
+    }
+  };
   return (
     <LinearGradient
       colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
@@ -37,7 +79,6 @@ const Signupemail = ({ navigation }) => {
           <TouchableOpacity
             onPress={() => navigation.navigate("LoginScreen")}
             style={{ left: 20, marginTop: '5%', marginBottom: '5%', width: 70 }}>
-
             <Image
               source={require('../../../asessts/images/arrow.png')}
             />
@@ -51,10 +92,10 @@ const Signupemail = ({ navigation }) => {
           <KeyboardAvoidingView enabled={true}>
             <Text style={styles.headingtext}>Register</Text>
             <Text style={styles.belowheadingtext}>Enter your credentials...</Text>
-            <View style={[styles.inputcontainer, { marginTop: '6%' }]}>
+            <View style={[styles.inputcontainer, { marginTop: '9%' }]}>
               <TextInput
                 style={styles.inputStyle}
-                placeholder="Enter First Name" //dummy@abc.com
+                placeholder="Enter First Name..." //dummy@abc.com
                 placeholderTextColor="#6C63FF"
                 autoCapitalize="none"
                 keyboardType='ascii-capable'
@@ -65,13 +106,26 @@ const Signupemail = ({ navigation }) => {
                   lastnameref.current &&
                   lastnameref.current.focus()
                 }
+                onChangeText={(text) => validatefirstname(text)}
               />
+              <View style={{ marginLeft: 2, justifyContent: 'center' }} activeOpacity={0.8}>
+                {wrongfirstname && (
+                  <Image
+                    source={require('../../../asessts/images/wrong.png')}
+                  />
+                )}
+                {correctfirstname && (
+                  <Image
+                    source={require('../../../asessts/images/correct.png')}
+                  />
+                )}
+              </View>
             </View>
             <View style={[styles.inputcontainer, { marginTop: '4%' }]}>
               <TextInput
                 style={styles.inputStyle}
                 ref={lastnameref}
-                placeholder="Enter Last Name" //dummy@abc.com
+                placeholder="Enter Last Name..." //dummy@abc.com
                 placeholderTextColor="#6C63FF"
                 autoCapitalize="none"
                 keyboardType='ascii-capable'
@@ -82,13 +136,26 @@ const Signupemail = ({ navigation }) => {
                   emailInputRef.current &&
                   emailInputRef.current.focus()
                 }
+                onChangeText={(text) => validatesecondname(text)}
               />
+              <View style={{ marginLeft: 2, justifyContent: 'center' }} activeOpacity={0.8}>
+                {wronglastname && (
+                  <Image
+                    source={require('../../../asessts/images/wrong.png')}
+                  />
+                )}
+                {correctlastname && (
+                  <Image
+                    source={require('../../../asessts/images/correct.png')}
+                  />
+                )}
+              </View>
             </View>
             <View style={[styles.inputcontainer, { marginTop: '4%' }]}>
               <TextInput
                 style={styles.inputStyle}
                 ref={emailInputRef}
-                placeholder="Enter Email" //dummy@abc.com
+                placeholder="Enter Email..." //dummy@abc.com
                 placeholderTextColor="#6C63FF"
                 autoCapitalize="none"
                 keyboardType="email-address"
@@ -99,13 +166,26 @@ const Signupemail = ({ navigation }) => {
                   passwordInputRef.current &&
                   passwordInputRef.current.focus()
                 }
+                onChangeText={(text) => validateemail(text)}
               />
+              <View style={{ marginLeft: 2, justifyContent: 'center' }} activeOpacity={0.8}>
+                {wrongemail && (
+                  <Image
+                    source={require('../../../asessts/images/wrong.png')}
+                  />
+                )}
+                {correctemail && (
+                  <Image
+                    source={require('../../../asessts/images/correct.png')}
+                  />
+                )}
+              </View>
             </View>
             <View style={[styles.inputcontainer, { marginTop: '4%', flexDirection: 'row', alignItems: 'center' }]}>
               <TextInput
                 ref={passwordInputRef}
                 style={styles.inputStyle}
-                placeholder="Enter Password" //dummy@abc.com
+                placeholder="Enter Password..." //dummy@abc.com
                 placeholderTextColor="#6C63FF"
                 autoCapitalize="none"
                 keyboardType="ascii-capable"
@@ -129,7 +209,7 @@ const Signupemail = ({ navigation }) => {
               <TextInput
                 style={styles.inputStyle}
                 ref={confirmpasswordInputRef}
-                placeholder="Enter Confirm Password" //dummy@abc.com
+                placeholder="Enter Confirm Password..." //dummy@abc.com
                 placeholderTextColor="#6C63FF"
                 autoCapitalize="none"
                 keyboardType='ascii-capable'
@@ -148,14 +228,24 @@ const Signupemail = ({ navigation }) => {
             <LinearGradient
               style={styles.buttonStyle}
               colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
-              start={{ x: 0.3, y: 1 }}
-              end={{ x: 1, y: 1 }}>
-              <TouchableOpacity style={{ flex: 1 }}
+              start={{ x: 0, y: 1 }}
+              end={{
+                x: 0.4, y: 0
+              }}>
+              <TouchableOpacity style={{ borderRadius: 30, width: '100%', alignItems: 'center', justifyContent: 'center', height: '100%' }}
                 onPress={() => navigation.navigate("UsertypeScreen")}>
-
-                <Text style={styles.buttonTextStyle}>Sign Up</Text>
+                <Text style={styles.buttonTextStyle}>Register</Text>
               </TouchableOpacity>
             </LinearGradient>
+            <View style={{ flexDirection: 'column', alignSelf: 'center', marginTop: 28 }}>
+              <View style={{ flexDirection: 'row' }}>
+                <Image
+                  source={require('../../../asessts/images/termandconditionicon.png')}
+                  style={{ resizeMode: 'contain', marginTop: 2, width: 20 }} />
+                <Text style={{ marginLeft: 5, fontSize: 15, fontFamily: font.fonts.RalewayMedium }}>Clicking this means you agree to our</Text>
+              </View>
+              <Text style={{ marginLeft: 25, fontSize: 15, fontFamily: font.fonts.RalewayMedium, color: colors.Colors.purpleLight }}>Terms and Conditions</Text>
+            </View>
           </KeyboardAvoidingView>
         </ScrollView>
       </View>
@@ -206,33 +296,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F2FF',
     borderRadius: 80,
     alignContent: 'center',
-    flexDirection: 'column'
+    flexDirection: 'row'
   },
   inputStyle: {
-    width: '85%',
+    width: '82%',
     color: '#6C63FF',
-    marginLeft: 8,
+    marginLeft: 18,
     fontSize: 16,
     fontFamily: font.fonts.RalewayMedium,
     alignContent: 'center'
   },
   buttonStyle: {
-    backgroundColor: '#6C63FF',
-    borderWidth: 0,
-    color: '#000',
-    height: 50,
+    height: 60,
     alignItems: 'center',
     borderRadius: 30,
-    marginLeft: '28%',
-    marginRight: '28%',
-    marginTop: 20,
-    justifyContent: 'center'
+    width: '56%',
+    marginTop: 40,
+    alignSelf: 'center'
   },
   buttonTextStyle: {
     color: '#FFFFFF',
-    paddingVertical: 10,
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
     fontFamily: font.fonts.RalewaySemiBold,
   }
 });

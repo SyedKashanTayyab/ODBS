@@ -77,7 +77,7 @@ const cfp = ({ navigation }) => {
                             placeholder="?" //12345
                             ref={firstref}
                             textAlign={'center'}
-                            placeholderTextColor={colors.Colors.gray}
+                            placeholderTextColor={colors.Colors.purpleLight}
                             keyboardType="numeric"
                             onSubmitEditing={Keyboard.dismiss}
                             blurOnSubmit={false}
@@ -95,7 +95,7 @@ const cfp = ({ navigation }) => {
                             placeholder="?" //12345
                             ref={secondref}
                             textAlign={'center'}
-                            placeholderTextColor={colors.Colors.gray}
+                            placeholderTextColor={colors.Colors.purpleLight}
                             keyboardType="numeric"
                             onSubmitEditing={Keyboard.dismiss}
                             blurOnSubmit={false}
@@ -113,7 +113,7 @@ const cfp = ({ navigation }) => {
                             placeholder="?" //12345
                             ref={thirdref}
                             textAlign={'center'}
-                            placeholderTextColor={colors.Colors.gray}
+                            placeholderTextColor={colors.Colors.purpleLight}
                             keyboardType="numeric"
                             onSubmitEditing={Keyboard.dismiss}
                             blurOnSubmit={false}
@@ -131,7 +131,7 @@ const cfp = ({ navigation }) => {
                             placeholder="?" //12345
                             ref={forthref}
                             textAlign={'center'}
-                            placeholderTextColor={colors.Colors.gray}
+                            placeholderTextColor={colors.Colors.purpleLight}
                             keyboardType="numeric"
                             onSubmitEditing={Keyboard.dismiss}
                             blurOnSubmit={false}
@@ -150,7 +150,7 @@ const cfp = ({ navigation }) => {
                     colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
                     start={{ x: 0.3, y: 1 }}
                     end={{ x: 1, y: 1 }}>
-                        <TouchableOpacity  style={{width:'100%',height:'100%',alignItems:'center'}}
+                        <TouchableOpacity  style={{width:'100%',height:'100%',alignItems:'center',justifyContent:'center'}}
                         onPress={()=>navigation.navigate("UpdatePasswordScreen")}>
                         <Text style={styles.buttonTextStyle}>Submit</Text>
                         </TouchableOpacity>
@@ -215,17 +215,16 @@ const styles = StyleSheet.create({
         color: '#000',
         alignItems: 'center',
         borderRadius: 30,
-        marginLeft: '18%',
-        marginRight: '18%',
-        marginTop: 20,
+        marginLeft: '22%',
+        marginRight: '22%',
+        marginTop: 30,
         justifyContent: 'center',
-        height: 40
+        height: 60
     },
     buttonTextStyle: {
         color: '#FFFFFF',
         paddingVertical: 10,
-        fontSize: 16,
-        fontWeight: 'bold',
+        fontSize: 18,
         fontFamily: font.fonts.RalewaySemiBold,
     },
     definetext: {

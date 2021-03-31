@@ -1,16 +1,13 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import * as AuthScreens from '../AuthScreens/index';
+import authAppNavigator from './authnavigation'
 
 
 const RootNavigator = createSwitchNavigator({
   SplashScreen: AuthScreens.Splash,
-  LoginScreen: AuthScreens.emaillogin,
-  EmailSignupScreen: AuthScreens.emailsignup,
-  UsertypeScreen:AuthScreens.usertype,
-  FPScreen:AuthScreens.Forgetpassword,
+  AuthNavigatorScreen: authAppNavigator,
   CFPScreen:AuthScreens.CheckForgotPass,
   UpdatePasswordScreen:AuthScreens.updatepassword
-
 });
 
 const MainNavigator = createAppContainer(RootNavigator);

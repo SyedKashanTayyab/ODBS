@@ -11,6 +11,7 @@ const Log = ({ navigation }) => {
   const [wrong, setwrong] = useState(false);
   const [correct, setcorrect] = useState(false);
   const [email, setemail] = useState("");
+  const [errortext, seterrortext] = useState("");
 
   const displayonoff = () => {
 
@@ -55,6 +56,7 @@ const Log = ({ navigation }) => {
           <KeyboardAvoidingView enabled>
             <Text style={styles.headingtext}>Login</Text>
             <Text style={styles.belowheadingtext}>Enter your credentials...</Text>
+            <Text style={styles.errortxtstyle}>{errortext}</Text>
             <View style={[styles.inputcontainer, { marginTop: '7%' }]}>
               <Text style={styles.innertext}>Email</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -113,23 +115,22 @@ const Log = ({ navigation }) => {
 
               </View>
             </View>
-            <Text style={styles.fpstyle}
-              onPress={() => navigation.navigate("FPScreen")}>Forgot Password?</Text>
+            <Text style={styles.fpstyle} onPress={() => navigation.navigate("FPScreen")}>Forgot Password?</Text>
             <LinearGradient
               style={styles.buttonStyle}
               colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
               start={{ x: 0.3, y: 1 }}
               end={{ x: 1, y: 1 }}>
-              <TouchableOpacity style={{ flex: 1 }}>
-
+              <TouchableOpacity style={{ borderRadius: 30, width: '100%', alignItems: 'center' }}
+                onPress={() => seterrortext("Invalid Email or Password")}>
                 <Text style={styles.buttonTextStyle}>Login</Text>
               </TouchableOpacity>
             </LinearGradient>
           </KeyboardAvoidingView>
-          <View style={{ width: '100%', alignSelf: 'center', marginTop: 20}}>
+          <View style={{ width: '100%', alignSelf: 'center', marginTop: 20, height: 260 }}>
             <Image
               source={require('../../../asessts/images/logindesignpic.png')}
-              style={{ resizeMode: 'contain', alignSelf: 'center', width: '100%' }}
+              style={{ resizeMode: 'contain', alignSelf: 'center', width: '100%', height: '100%' }}
             />
           </View>
         </ScrollView>
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
   belowheadingtext: {
     fontSize: 15,
     marginLeft: '10%',
-    fontFamily: font.fonts.RalewayLight
+    fontFamily: font.fonts.RalewayMedium
   },
   inputcontainer: {
     marginLeft: '8%',
@@ -180,7 +181,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   innertext: {
-    fontWeight: 'bold',
     fontSize: 16,
     marginTop: 8,
     fontFamily: font.fonts.RalewaySemiBold,
@@ -193,40 +193,41 @@ const styles = StyleSheet.create({
     fontFamily: font.fonts.RalewayMedium
   },
   buttonStyle: {
-    backgroundColor: '#6C63FF',
-    borderWidth: 0,
-    color: '#000',
+    height: 60,
     alignItems: 'center',
     borderRadius: 30,
-    marginLeft: '28%',
-    marginRight: '28%',
+    width: '56%',
     marginTop: 10,
-    justifyContent: 'center',
-    height: 50
+    alignSelf: 'center'
   },
   buttonTextStyle: {
     color: '#FFFFFF',
     paddingVertical: 10,
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 20,
     fontFamily: font.fonts.RalewaySemiBold,
   },
   registerbuttonStyle: {
-    marginTop: '5%',
-    marginBottom: '5%',
+    marginTop: '4%',
+    marginBottom: '4%',
     width: 120,
     marginRight: '7%',
     borderRadius: 30,
     borderWidth: 1,
     borderColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent:'center'
   },
   fpstyle: {
     color: '#6C63FF',
-    fontFamily: font.fonts.RalewayMedium,
+    fontFamily: font.fonts.RalewaySemiBold,
     fontSize: 14,
-    marginTop: 10,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginTop: 10
+  },
+  errortxtstyle: {
+    color: 'red',
+    fontFamily: font.fonts.RalewayMedium,
+    fontSize: 18,
+    marginLeft: '10%',
   }
 });

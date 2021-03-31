@@ -35,7 +35,6 @@ const Update = ({ navigation }) => {
           <Text style={styles.preferencetext}>Enter new password...</Text>
         </LinearGradient>
       </View>
-
       <View style={styles.lowercontainer}>
         <ScrollView keyboardShouldPersistTaps="handled">
           <KeyboardAvoidingView enabled>
@@ -90,10 +89,9 @@ const Update = ({ navigation }) => {
               style={styles.buttonStyle}
               colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
               start={{ x: 0.3, y: 1 }}
-              end={{ x: 1, y: 1 }}
-            >
-              <TouchableOpacity style={{ width:'100%',height:'100%',alignItems:'center'}}
-                onPress={() => navigation.navigate("CFPScreen")}>
+              end={{ x: 1, y: 1 }}>
+              <TouchableOpacity style={{ width:'100%',height:'100%',alignItems:'center',justifyContent:'center'}}
+                onPress={() => navigation.navigate("LoginScreen")}>
                 <Text style={styles.buttonTextStyle}>Send Recovery Code</Text>
               </TouchableOpacity>
             </LinearGradient>
@@ -161,15 +159,14 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginLeft: '18%',
     marginRight: '18%',
-    marginTop: 20,
+    marginTop: 30,
     justifyContent: 'center',
-    height: 40
+    height: 60
   },
   buttonTextStyle: {
     color: '#FFFFFF',
     paddingVertical: 10,
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
     fontFamily: font.fonts.RalewaySemiBold,
   },
   definetext: {
