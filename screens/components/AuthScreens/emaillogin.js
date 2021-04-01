@@ -127,12 +127,12 @@ const Log = ({ navigation }) => {
               </TouchableOpacity>
             </LinearGradient>
           </KeyboardAvoidingView>
-          <View style={{ width: '100%', alignSelf: 'center', marginTop: 20, height: 260 }}>
+          {/* <View style={{ width: '100%', alignSelf: 'center', marginTop: 20, height: 260 }}>
             <Image
               source={require('../../../asessts/images/logindesignpic.png')}
               style={{ resizeMode: 'contain', alignSelf: 'center', width: '100%', height: '100%' }}
             />
-          </View>
+          </View> */}
         </ScrollView>
       </View>
     </LinearGradient>
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     height: 60,
-    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 30,
     width: '56%',
     marginTop: 10,
@@ -202,8 +202,7 @@ const styles = StyleSheet.create({
   },
   buttonTextStyle: {
     color: '#FFFFFF',
-    paddingVertical: 10,
-    fontSize: 20,
+    fontSize: 22,
     fontFamily: font.fonts.RalewaySemiBold,
   },
   registerbuttonStyle: {
@@ -215,7 +214,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
     alignItems: 'center',
-    justifyContent:'center'
+    justifyContent: 'center'
   },
   fpstyle: {
     color: '#6C63FF',

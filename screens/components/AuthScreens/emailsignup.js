@@ -244,7 +244,7 @@ const Signupemail = ({ navigation }) => {
                   style={{ resizeMode: 'contain', marginTop: 2, width: 20 }} />
                 <Text style={{ marginLeft: 5, fontSize: 15, fontFamily: font.fonts.RalewayMedium }}>Clicking this means you agree to our</Text>
               </View>
-              <Text style={{ marginLeft: 25, fontSize: 15, fontFamily: font.fonts.RalewayMedium, color: colors.Colors.purpleLight }}>Terms and Conditions</Text>
+              <Text style={{ marginLeft: 25, fontSize: 15, fontFamily: font.fonts.RalewayMedium, color: colors.Colors.purpleLight, marginBottom: 40 }}>Terms and Conditions</Text>
             </View>
           </KeyboardAvoidingView>
         </ScrollView>
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
   },
   buttonTextStyle: {
     color: '#FFFFFF',
-    fontSize: 18,
+    fontSize: 22,
     fontFamily: font.fonts.RalewaySemiBold,
   }
 });

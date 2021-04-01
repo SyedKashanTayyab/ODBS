@@ -6,6 +6,7 @@ import usertype from './usertype'
 import Forgetpassword from './Forgetpassword'
 import CheckForgotPass from './CheckForgotPass'
 import updatepassword from './updatepassword'
+import SelectGenre from './SelectGenre'
 
 //home screens
 
@@ -17,5 +18,6 @@ export {
     Forgetpassword,
     CheckForgotPass,
     usertype,
-    updatepassword
+    updatepassword,
+    SelectGenre
 }

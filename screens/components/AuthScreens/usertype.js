@@ -2,11 +2,12 @@ import React, { createRef } from 'react';
 import { StyleSheet, View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import font from '../../constants/fonts'
+import colors from '../../constants/colors'
 
 const usertypefunc = ({ navigation }) => {
     return (
         <LinearGradient
-            colors={['#4D47B7', '#423D9B', '#393587']}
+            colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
             style={styles.linearGradient}
             start={{ x: 0.3, y: 1 }}
             end={{ x: 1, y: 1 }}>
@@ -20,7 +21,7 @@ const usertypefunc = ({ navigation }) => {
                     <View style={styles.viewofcard}>
                         <View style={styles.Card}>
                             <TouchableOpacity style={styles.cardimage}
-                                onPress={() => console.log("clicked")}>
+                                onPress={() => navigation.navigate("SGScreen")}>
                                 <Image
                                     source={require('../../../asessts/images/reader.png')}
                                     style={{ resizeMode: 'cover', height: '100%', width: '100%', borderRadius: 15 }} />
@@ -29,7 +30,7 @@ const usertypefunc = ({ navigation }) => {
                         </View>
                         <View style={styles.Card}>
                             <TouchableOpacity style={styles.cardimage}
-                                onPress={() => console.log("clicked")}>
+                                onPress={() => navigation.navigate("SGScreen")}>
                                 <Image
                                     source={require('../../../asessts/images/writer.png')}
                                     style={{ resizeMode: 'cover', height: '100%', width: '100%', borderRadius: 15 }} />
@@ -38,7 +39,7 @@ const usertypefunc = ({ navigation }) => {
                         </View>
                         <View style={styles.Card}>
                             <TouchableOpacity style={styles.cardimage}
-                                onPress={() => console.log("clicked")}>
+                                onPress={() => navigation.navigate("SGScreen")}>
                                 <Image
                                     source={require('../../../asessts/images/both.png')}
                                     style={{ resizeMode: 'cover', height: '100%', width: '100%', borderRadius: 15 }} />
@@ -50,7 +51,6 @@ const usertypefunc = ({ navigation }) => {
                         <Text style={styles.notetext}>Note:</Text>
                         <Text style={styles.notetext2}>Dictation - Speech to text allows to dictate, translate and transcribe text instead of typing. It uses latest speech to text voice recognition technology and its main purpose is speech to text and translation for text messaging.</Text>
                     </View>
-
                     <View style={{ bottom: 0, position: 'absolute', width: '100%', height: '12%', marginTop: 20 }}>
                         <Image
                             source={require('../../../asessts/images/belowpicture.png')}
