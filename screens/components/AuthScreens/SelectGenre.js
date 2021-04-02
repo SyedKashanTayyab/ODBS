@@ -26,7 +26,6 @@ const sgenre = ({ navigation }) => {
 
         });
         if (count <= 5) {
-            console.log(count)
             let matched = false;
 
             if (dataindex.length === 0) {
@@ -34,7 +33,6 @@ const sgenre = ({ navigation }) => {
                 dataindex.push(index);
                 setDataSource(categories);
                 setcount(count + 1)
-                console.log(count)
             }
             else if (dataindex.length != 0) {
                 for (let i = 0; i < dataindex.length; i++) {

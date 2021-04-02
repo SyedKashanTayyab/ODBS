@@ -107,7 +107,7 @@ const Log = ({ navigation }) => {
                 <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => displayonoff()}>
 
                   <Image
-                    source={show ? require('../../../asessts/images/eyeoff.png') : require('../../../asessts/images/eyeon.png')}
+                     source={show ? require('../../../asessts/images/eyeoff.png') : require('../../../asessts/images/eyeon.png')}
                     style={{ resizeMode: 'contain' }}
                   />
                 </TouchableOpacity>
@@ -121,7 +121,7 @@ const Log = ({ navigation }) => {
               colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
               start={{ x: 0.3, y: 1 }}
               end={{ x: 1, y: 1 }}>
-              <TouchableOpacity style={{ borderRadius: 30, width: '100%', alignItems: 'center' }}
+              <TouchableOpacity style={{ borderRadius: 30, width: '100%', alignItems: 'center',height:'100%',justifyContent:'center' }}
                 onPress={() => navigation.navigate("SGScreen")}>
                 <Text style={styles.buttonTextStyle}>Login</Text>
               </TouchableOpacity>
