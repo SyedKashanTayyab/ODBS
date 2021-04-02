@@ -122,7 +122,7 @@ const Log = ({ navigation }) => {
               start={{ x: 0.3, y: 1 }}
               end={{ x: 1, y: 1 }}>
               <TouchableOpacity style={{ borderRadius: 30, width: '100%', alignItems: 'center' }}
-                onPress={() => seterrortext("Invalid Email or Password")}>
+                onPress={() => navigation.navigate("SGScreen")}>
                 <Text style={styles.buttonTextStyle}>Login</Text>
               </TouchableOpacity>
             </LinearGradient>

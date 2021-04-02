@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, FlatList, TouchableOpacity, Settings } from 'react-native';
+import { View, StyleSheet, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import font from '../../constants/fonts'
 import colors from '../../constants/colors'
 
 const sgenre = ({ navigation }) => {
     const [dataSource, setDataSource] = useState([]);
-    const [dataindex,setdataindex] = useState([]);
+    const [dataindex, setdataindex] = useState([]);
+    const [count, setcount] = useState(1);
 
     useEffect(() => {
         let items = Array.apply(null, Array(60)).map((v, i) => {
@@ -20,35 +21,64 @@ const sgenre = ({ navigation }) => {
 
     const updateOnPress = (index) => {
         const categories = dataSource.map((item) => {
-          item.selected = false;
-          return item;
-          console.log(index);
+            item.selected = false;
+            return item;
+
         });
-        if(dataindex.length == 0)
-        {
-            categories[index].selected = true;
-            dataindex.push(index);
-            setDataSource(categories);
-            console.log(dataindex)
-        }
-        else
-        {
-            for(let i = 0;i < 5;i++)
-            {
-                if(dataindex[i] == index)
-                {
-                    console.log("matched")
+        if (count <= 5) {
+            console.log(count)
+            let matched = false;
+
+            if (dataindex.length === 0) {
+                categories[index].selected = true;
+                dataindex.push(index);
+                setDataSource(categories);
+                setcount(count + 1)
+                console.log(count)
+            }
+            else if (dataindex.length != 0) {
+                for (let i = 0; i < dataindex.length; i++) {
+                    if (dataindex[i] == index) {
+                        matched = true
+                        dataindex.splice(i, 1);
+                        setcount(count - 1)
+                        console.log(count)
+                        break;
+                    }
                 }
-                else
-                {
-                    categories[index].selected = true;
-                    dataindex.push(index);
+                for (let j = 0; j < dataindex.length; j++) {
+                    let a = dataindex[j]
+                    categories[a].selected = true;
                     setDataSource(categories);
-                    console.log(dataindex)
+                }
+                if (!matched) {
+                    dataindex.push(index);
+                    for (let i = 0; i < dataindex.length; i++) {
+                        let a = dataindex[i]
+                        categories[a].selected = true;
+                        setDataSource(categories);
+                    }
+                    setcount(count + 1)
+                    console.log(count)
                 }
             }
         }
-      };
+        else {
+            for (let i = 0; i < dataindex.length; i++) {
+                if (dataindex[i] == index) {
+                    dataindex.splice(i, 1);
+                    setcount(count - 1)
+                    console.log(count)
+                    break;
+                }
+            }
+            for (let j = 0; j < dataindex.length; j++) {
+                let a = dataindex[j]
+                categories[a].selected = true;
+                setDataSource(categories);
+            }
+        }
+    };
     return (
         <LinearGradient
             colors={[colors.Colors.purpleLight, colors.Colors.purpleDark]}
@@ -63,10 +93,11 @@ const sgenre = ({ navigation }) => {
                 <FlatList
                     style={styles.list}
                     data={dataSource}
+                    showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => (
                         <View style={styles.innerlistview}>
                             <TouchableOpacity onPress={() => updateOnPress(item.id)}
-                            style={item.selected ? styles.listboxselected : styles.listboxnormal}>
+                                style={item.selected ? styles.listboxselected : styles.listboxnormal}>
                                 <Text style={item.selected ? styles.listtextselected : styles.listtextnormal}>{item.text}</Text>
                             </TouchableOpacity>
                         </View>
@@ -75,6 +106,12 @@ const sgenre = ({ navigation }) => {
                     numColumns={2}
                     keyExtractor={(item, index) => index}
                 />
+                <TouchableOpacity style={styles.gonextbutton}>
+                    <Image
+                        source={require('../../../asessts/images/forward.png')}
+                        style={{ resizeMode: 'contain', alignSelf: 'center'}}
+                    />
+                </TouchableOpacity>
             </View>
         </LinearGradient>
     );
@@ -115,15 +152,15 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '90%',
         alignSelf: 'center',
-        backgroundColor: '#b2b2b2'
+        backgroundColor: '#fff'
     },
     listboxnormal: {
-        width: 164,
+        width:'85%',
         height: 55,
         backgroundColor: '#F0EFFF',
         borderRadius: 10,
-        justifyContent:'center',
-        alignItems:'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     innerlistview: {
         flex: 1,
@@ -134,21 +171,33 @@ const styles = StyleSheet.create({
         paddingTop: 20
     },
     listtextnormal: {
-        color:'#3D3D3D',
-        fontFamily:font.fonts.RalewayMedium,
-        fontSize:20
+        color: '#3D3D3D',
+        fontFamily: font.fonts.RalewayMedium,
+        fontSize: 20
     },
     listboxselected: {
         width: 164,
         height: 55,
         backgroundColor: '#4D47B7',
         borderRadius: 10,
-        justifyContent:'center',
-        alignItems:'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     listtextselected: {
-        color:'#fff',
-        fontFamily:font.fonts.RalewayMedium,
-        fontSize:20
+        color: '#fff',
+        fontFamily: font.fonts.RalewayMedium,
+        fontSize: 20
+    },
+    gonextbutton: {
+        backgroundColor: colors.Colors.purpleDark,
+        bottom: 14,
+        position: 'absolute',
+        borderRadius: 100,
+        height: 55,
+        width: 55,
+        right: 14,
+        alignItems:'center',
+        justifyContent:'center',
+        elevation:25
     }
 });
